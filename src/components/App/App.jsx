@@ -20,6 +20,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import CreateProfileForm from '../CreateProfileForm/CreateProfileForm.jsx';
+import ProductPage from '../Product/ProductPage.jsx';
+import ProfilePage from '../ProfilePage/ProfilePage.jsx';
 
 import './App.css';
 
@@ -113,6 +115,14 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+
+          <Route exact path="/product">
+            <ProductPage />
+          </Route>
+
+          <Route exact path="/profile">
+            <ProfilePage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
