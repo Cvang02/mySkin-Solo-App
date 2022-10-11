@@ -1,23 +1,37 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+// IMPORT MATERIAL UI
+import { Hidden } from '@mui/material';
 
 function RegisterForm() {
+
+  // THESE ARE OUR LOCAL STATE
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
 
+  // USE-SELECTOR
+  const errors = useSelector((store) => store.errors);
+  // USE-DISPATCH
+  const dispatch = useDispatch();
+  // USE-HISTORY
+  const history = useHistory();
+
+  // REGISTER HANDLE SUBMIT
   const registerUser = (event) => {
     event.preventDefault();
-
     dispatch({
-      type: 'REGISTER',
+      type: 'REDUCER_USER',
       payload: {
         username: username,
         password: password,
+        email: email,
       },
     });
-  }; // end registerUser
+    history.push('/createProfile')
+  }; // END OF registerUser
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
@@ -52,10 +66,23 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <label htmlFor="email">
+          Email:
+          <input
+            type="text"
+            name="email"
+            value={email}
+            required
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        {!username && !password && !email ? Hidden(<input className="btn" type="submit" name="submit" value="Register" />) :
+        <input className="btn" type="submit" name="submit" value="Register" />}
       </div>
     </form>
   );
-}
+} // END OF RegisterForm
 
 export default RegisterForm;
