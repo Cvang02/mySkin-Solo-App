@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import AddProfileImage from './AddProfileImage.jsx';
+
 function CreateProfileForm() {
+
     // THESE ARE OUR LOCAL STATE
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
     // USE-SELECTOR
     const errors = useSelector((store) => store.errors);
     const userInfo = useSelector(store => store.userInfoReducer);
+    const profileInfo = useSelector(store => store.profileImageReducer);
+    
     // USE-DISPATCH
     const dispatch = useDispatch();
     // USE-HISTORY
@@ -25,7 +30,8 @@ function CreateProfileForm() {
         password: userInfo.password,
         email: userInfo.email,
         first_name: firstName,
-        last_name: lastName
+        last_name: lastName,
+        profile_url: profileInfo.profile_url
       },
     });
     history.push('/user')
@@ -45,6 +51,7 @@ function CreateProfileForm() {
           {errors.registrationMessage}
         </h3>
       )}
+      <AddProfileImage />
       <div>
         <label htmlFor="firstName">
           First Name:
