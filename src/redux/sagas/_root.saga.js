@@ -6,6 +6,7 @@ import addProfileImageSaga from './ProfileImage.saga/addProfileImage.saga.js';
 import getProfileImageSaga from './ProfileImage.saga/getProfileImage.saga.js';
 import addPostSaga from './Post.saga/AddPost.saga.js';
 import getPostItemsSaga from './Post.saga/GetPost.saga.js';
+import deletePostItemSaga from './Post.saga/DeletePost.saga.js';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     getProfileImageSaga(),
     addPostSaga(),
     getPostItemsSaga(),
+    deletePostItemSaga(),
   ]);
 }
