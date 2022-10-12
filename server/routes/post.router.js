@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const cloudinary = require('../modules/cloudinary');
 
+// POST - ROUTE
 router.post('/', async (req, res) => {
 
     try {
@@ -28,6 +29,21 @@ router.post('/', async (req, res) => {
       console.error(err);
       res.status(500).json({ err: 'Something went wrong' });
    }
-  });
+});
+
+// GET - ROUTE 
+router.get('/', (req, res) => {
+  const query = `SELECT * FROM "post" ORDER BY "id" DESC;`;
+  pool.query(query)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR:', err);
+      res.sendStatus(500)
+    })
+});
+
+
 
 module.exports = router;

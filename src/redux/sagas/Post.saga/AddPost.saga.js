@@ -3,12 +3,18 @@ import { put, takeEvery } from 'redux-saga/effects';
 
 function* addPost (action) {
     console.log('what is our action.paylod:', action.payload);
-    try{
+    try {
+
         yield axios({
             method: 'POST',
             url: '/api/postRouter',
             data: action.payload
+        });
+        
+        yield put({
+            type: 'SAGA_GET_POST_LIST'
         })
+        
     } catch {
         console.log('error in addPost')
     }
@@ -19,3 +25,4 @@ function* addPostSaga(){
 }
 
 export default addPostSaga;
+
