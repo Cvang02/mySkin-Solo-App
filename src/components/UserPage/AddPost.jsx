@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // MATERIAL UI 
 import Button from '@mui/material/Button';
@@ -11,7 +12,11 @@ function AddPost () {
 
         // USE-STATE
         const [previewSource, setPreviewSource] = useState ('');
-        const [description, setDescription] = useState('Controlled');
+        const [description, setDescription] = useState('');
+
+        // DISPATCH 
+        const dispatch = useDispatch();
+        const history = useHistory();
     
         // HANDLE THE FILE CHANGE INPUT 
         const handleFileInputChange = e => {
@@ -28,14 +33,12 @@ function AddPost () {
             }
         }
     
-        // DISPATCH 
-        const dispatch = useDispatch();
-    
         // HANDLE THE SUBMIT BUTTON 
         const handelSubmitFile = e => {
             e.preventDefault();
             if(!previewSource) return;
             uploadPost(previewSource);
+            history.push('/home');
             setPreviewSource('');
             setDescription('');
         }
@@ -56,7 +59,7 @@ function AddPost () {
 
     return (
         <div>
-            <form onSubmit={handelSubmitFile}>
+            <div>
                 <input type="file" onChange={handleFileInputChange} name="image" />
                 <Box 
                     component="form" sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
@@ -73,8 +76,8 @@ function AddPost () {
                         />
                     </div>
                 </Box>
-                <Button variant="contained" type="submit">Add</Button>
-            </form>
+                <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
+            </div>
             {previewSource && (
                 <img src={previewSource} alt="chosen" />
             )}
