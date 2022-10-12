@@ -78,9 +78,9 @@ function AddPost () {
                 </Box>
                 <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
             </div>
-            {previewSource && (
+            {/* {previewSource && (
                 <img src={previewSource} alt="chosen" />
-            )}
+            )} */}
         </div>
 )
 } // END OF AddPost
