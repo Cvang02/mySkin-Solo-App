@@ -1,15 +1,15 @@
 import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 
 // IMPORT COMPONENT 
+import AddProduct from './AddProduct.jsx';
 import GetProductList from './GetProductList.jsx';
 
 function ProductPage () {
     return (
         <div className="container">
         <h2>This is the product page.</h2>
+        <AddProduct />
         <GetProductList />
-        <LogOutButton className="btn" />
       </div>
     )
 }
