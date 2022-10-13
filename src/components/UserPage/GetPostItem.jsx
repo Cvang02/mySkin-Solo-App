@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import DeletePost from './DeletePost.jsx';
+import { useHistory } from 'react-router-dom';
 
 // MATERIAL UI 
 import { styled } from '@mui/material/styles';
@@ -12,12 +13,13 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 
 
 function ImageItem({image}){
+
+    const history = useHistory();
 
     const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -40,11 +42,6 @@ function ImageItem({image}){
         <div>
             <Card sx={{ maxWidth: 345 }}>
                 <CardHeader
-                    action={
-                    <IconButton aria-label="settings">
-                    <EditIcon />
-                    </IconButton>
-                    }
                     title={image.id}
                 />
                 <CardMedia
@@ -54,15 +51,14 @@ function ImageItem({image}){
                     alt="Post_Feed"
                 />
                 <CardContent>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.primary">
                         {image.description}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        Date Posted: {image.inserted_at}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                    <DeletePost image={image}/>
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
@@ -74,10 +70,19 @@ function ImageItem({image}){
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>Skincare Product:</Typography>
+                <CardActions disableSpacing>
+                    <IconButton aria-label="add to favorites">
+                        <FavoriteIcon />
+                    </IconButton>
+                    <DeletePost image={image}/>
+                    <IconButton aria-label="settings" onClick={() => history.push(`/post/${image.id}/editpost`)}>
+                        <EditIcon />
+                    </IconButton>
+                </CardActions>
+                    {/* <Typography paragraph>Skincare Product:</Typography>
                     <Typography paragraph>
                         This section will show the users skincare product that which they are using.
-                    </Typography>
+                    </Typography> */}
                 </CardContent>
                 </Collapse>
             </Card>
