@@ -67,5 +67,50 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+// GET - ROUTE FOR EDIT POST 
+router.get('/:id', (req, res) => {
+
+  const sqlText = `
+    SELECT * FROM "post"
+    WHERE id=$1;
+  `
+  const sqlValues = [req.params.id]
+
+  pool.query(sqlText, sqlValues)
+
+    .then((result) => {
+      res.send(result.rows[0]);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500);
+    });
+});
+
+// PUT - ROUTE 
+router.put('/:id', (req, res) => {
+  // console.log('are we making it here');
+  console.log('What is our req.body:', req.body)
+
+  const idToUpdate = req.body.id;
+  const descriptionUpdate = req.body.description;
+
+  const sqlText = `
+  UPDATE "post"
+  SET "description" = $1
+  WHERE"id" = $2`;
+
+const sqlValues = [descriptionUpdate, idToUpdate]
+
+  pool.query(sqlText, sqlValues)
+      .then((result) => {
+          console.log('sucess:', result)
+          res.sendStatus(200);
+      })
+      .catch((error) => {
+          console.log(`Error making database query ${sqlText}`, error);
+          res.sendStatus(500);
+      });
+});
 
 module.exports = router;
