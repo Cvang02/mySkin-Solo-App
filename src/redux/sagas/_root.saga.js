@@ -15,6 +15,7 @@ import updatePostSaga from './Post.saga/UpdatePost.saga';
 // IMPORT PRODUCT SAGA
 import getProductListSaga from './Product.saga/GetProduct.saga.js';
 import addProductSaga from './Product.saga/AddProduct.saga.js';
+import deleteProductSaga from './Product.saga/DeleteProduct.saga.js';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -37,5 +38,6 @@ export default function* rootSaga() {
     updatePostSaga(),
     getProductListSaga(),
     addProductSaga(),
+    deleteProductSaga(),
   ]);
 }
