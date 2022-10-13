@@ -1,12 +1,12 @@
 import './Product.css';
-
 import React from 'react';
+
+// IMPORT COMPONENT
+import DeleteProduct from './DeleteProduct.jsx';
+
+// IMPORT MATERIAL UI
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 
 function GetProductItem ({item}) {
@@ -34,6 +34,7 @@ function GetProductItem ({item}) {
             </td>
             <td>{item.brand_name}</td>
             <td>{item.description}</td>
+            <DeleteProduct item={item}/>
         </tr>
     )
 }
