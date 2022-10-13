@@ -18,14 +18,14 @@ function deleteProduct ({item}) {
     } // END OF deleteImage
 
     return (
-        <td>
+        <div>
             <IconButton 
                 aria-label="share" 
                 onClick={deletePostImage}
             >
                 <DeleteIcon />
             </IconButton>
-        </td>
+        </div>
     )
 } // END OF deleteProduct
 
