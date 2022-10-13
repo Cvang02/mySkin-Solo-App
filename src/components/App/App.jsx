@@ -23,6 +23,7 @@ import CreateProfileForm from '../CreateProfileForm/CreateProfileForm.jsx';
 import ProductPage from '../Product/ProductPage.jsx';
 import ProfilePage from '../ProfilePage/ProfilePage.jsx';
 import EditPostPage from '../UserPage/EditPost.jsx';
+import EditProductPage from '../Product/EditProduct.jsx';
 
 import './App.css';
 
@@ -124,6 +125,10 @@ function App() {
 
           <Route exact path="/post/:id/editpost">
             <EditPostPage />
+          </Route>
+
+          <Route exact path="/post/:id/editproduct">
+            <EditProductPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

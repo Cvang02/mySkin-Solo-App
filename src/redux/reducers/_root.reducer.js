@@ -10,6 +10,7 @@ import postToEdit from './PostReducers/editPost.reducer.js';
 
 // IMPORT PRODUCT REDUCERS
 import productListReducer from './ProductReducers/productList.reducer.js';
+import productToEdit from './ProductReducers/editProduct.reducer.js';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   postFeedReducer,
   postToEdit,
   productListReducer,
+  productToEdit,
 });
 
 export default rootReducer;
