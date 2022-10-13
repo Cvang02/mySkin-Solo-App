@@ -4,11 +4,16 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import addProfileImageSaga from './ProfileImage.saga/addProfileImage.saga.js';
 import getProfileImageSaga from './ProfileImage.saga/getProfileImage.saga.js';
+
+// IMPORT POST SAGA
 import addPostSaga from './Post.saga/AddPost.saga.js';
 import getPostItemsSaga from './Post.saga/GetPost.saga.js';
 import deletePostItemSaga from './Post.saga/DeletePost.saga.js';
 import EditPostSaga from './Post.saga/EditPost.saga.js';
 import updatePostSaga from './Post.saga/UpdatePost.saga';
+
+// IMPORT PRODUCT SAGA
+import getProductListSaga from './Product.saga/GetProduct.saga.js';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,5 +34,6 @@ export default function* rootSaga() {
     deletePostItemSaga(),
     EditPostSaga(),
     updatePostSaga(),
+    getProductListSaga(),
   ]);
 }

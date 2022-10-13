@@ -12,7 +12,7 @@ function* deletePostItem(action){
             url: `/api/postRouter/${itemId}`
         })
         yield put({
-            type: 'SAGA_GET_ITEMS'
+            type: 'SAGA_GET_POST_LIST'
         })
     } catch {
         console.log('DELETE ERROR');
