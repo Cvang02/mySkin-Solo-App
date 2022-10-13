@@ -3,8 +3,13 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import userInfoReducer from './userInfo.reducer';
 import profileImageReducer from './addProfileImage.reducer.js';
+
+// IMPORT POST REDUCERS 
 import postFeedReducer from './PostReducers/postfeed.reducer.js';
 import postToEdit from './PostReducers/editPost.reducer.js';
+
+// IMPORT PRODUCT REDUCERS
+import productListReducer from './ProductReducers/productList.reducer.js';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +24,7 @@ const rootReducer = combineReducers({
   profileImageReducer,
   postFeedReducer,
   postToEdit,
+  productListReducer,
 });
 
 export default rootReducer;
