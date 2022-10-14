@@ -52,4 +52,32 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// PUT - ROUTE 
+router.put('/:id', (req, res) => {
+  // console.log('are we making it here');
+  // console.log('What is our req.body:', req.body)
+
+  const id = req.body.id;
+  const username = req.body.username;
+  const email = req.body.email;
+  const firstName = req.body.first_name;
+  const LastName = req.body.last_name;
+
+  const sqlText = `
+    UPDATE "user" 
+    SET ("username", "email", "first_name", "last_name") = ($1, $2, $3, $4)
+    WHERE "id" = $5`;
+
+const sqlValues = [username, email, firstName, LastName, id]
+
+  pool.query(sqlText, sqlValues)
+      .then((result) => {
+          console.log('sucess:', result)
+          res.sendStatus(200);
+      })
+      .catch((error) => {
+          console.log(`Error making database query ${sqlText}`, error);
+          res.sendStatus(500);
+      });
+});
 module.exports = router;
