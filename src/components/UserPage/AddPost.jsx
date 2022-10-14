@@ -13,9 +13,9 @@ function AddPost () {
         // USE-STATE
         const [previewSource, setPreviewSource] = useState ('');
         const [description, setDescription] = useState('');
-
         // DISPATCH 
         const dispatch = useDispatch();
+        // USE-HISTORY
         const history = useHistory();
     
         // HANDLE THE FILE CHANGE INPUT 
@@ -38,10 +38,15 @@ function AddPost () {
             e.preventDefault();
             if(!previewSource) return;
             uploadPost(previewSource);
-            history.push('/home');
+            history.push('/');
             setPreviewSource('');
             setDescription('');
         }
+
+        const handleCancel = (e) => {
+            e.preventDefault();
+            history.push('/')
+          }
     
     
         // THIS IS OUR IMAGE FILE DATA, WE ARE CONVERTING THE IMAGE 
@@ -77,6 +82,7 @@ function AddPost () {
                     </div>
                 </Box>
                 <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
+                <Button variant="contained" onClick={handleCancel}>Cancel</Button>
             </div>
             {/* {previewSource && (
                 <img src={previewSource} alt="chosen" />

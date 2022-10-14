@@ -2,7 +2,7 @@ import axios from "axios";
 import { put, takeEvery } from 'redux-saga/effects';
 
 function* addPost (action) {
-    console.log('what is our action.paylod:', action.payload);
+    // console.log('what is our action.paylod:', action.payload);
     try {
 
         yield axios({

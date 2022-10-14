@@ -14,15 +14,17 @@ router.post('/', async (req, res) => {
       const uploadResponse = await cloudinary.uploader.upload(fileStr, {
           upload_preset: 'post_feed',
       });
-      console.log(uploadResponse);
+      // console.log(uploadResponse);
+      const image = uploadResponse.url
   
       const queryText = `INSERT INTO "post" ("image_url", "description", "user_id") VALUES ($1, $2, $3);`;
   
       const queryValues = [
-        uploadResponse.url,
+        image,
         description,
         id
       ]
+      
       pool.query(queryText, queryValues)
   
   } catch (err) {
