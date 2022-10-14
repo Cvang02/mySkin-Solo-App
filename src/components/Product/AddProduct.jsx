@@ -37,12 +37,18 @@ function AddProduct () {
         // HANDLE THE SUBMIT BUTTON 
         const handelSubmitFile = e => {
             e.preventDefault();
-            if(!previewSource) return;
+            if(!previewSource || !brandName) return;
             uploadPost(previewSource);
-            // history.push('/home');
+            history.push('/product');
             setPreviewSource('');
             setBrandName('');
             setDescription('');
+        }
+
+        // HANDLE THE CANCEL BUTTON
+        const handleCancel = (e) => {
+            e.preventDefault();
+            history.push('/product')
         }
     
     
@@ -88,6 +94,7 @@ function AddProduct () {
                     </div>
                 </Box>
                 <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
+                <Button variant="contained" onClick={handleCancel}>Cancel</Button>
             </div>
             {/* {previewSource && (
                 <img src={previewSource} alt="chosen" />

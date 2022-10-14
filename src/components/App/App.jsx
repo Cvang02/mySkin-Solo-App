@@ -26,6 +26,7 @@ import EditPostPage from '../UserPage/EditPost.jsx';
 import EditProductPage from '../Product/EditProduct.jsx';
 import EditProfilePage from '../ProfilePage/EditProfile.jsx'
 import AddPost from '../UserPage/AddPost.jsx';
+import AddProduct from '../Product/AddProduct.jsx';
 
 import './App.css';
 
@@ -127,6 +128,10 @@ function App() {
 
           <Route exact path="/product">
             <ProductPage />
+          </Route>
+
+          <Route exact path="/add-product">
+            <AddProduct />
           </Route>
 
           <Route exact path="/post/:id/editpost">

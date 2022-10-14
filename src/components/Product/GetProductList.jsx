@@ -29,7 +29,7 @@ function GetProductList () {
                         <th>Product Image</th>
                         <th>Brand Name</th>
                         <th>Description</th>
-                        <th>Edit</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
