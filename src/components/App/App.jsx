@@ -25,6 +25,7 @@ import ProfilePage from '../ProfilePage/ProfilePage.jsx';
 import EditPostPage from '../UserPage/EditPost.jsx';
 import EditProductPage from '../Product/EditProduct.jsx';
 import EditProfilePage from '../ProfilePage/EditProfile.jsx'
+import AddPost from '../UserPage/AddPost.jsx';
 
 import './App.css';
 
@@ -118,6 +119,10 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+
+          <Route exact path="/add-post">
+            <AddPost />
           </Route>
 
           <Route exact path="/product">
