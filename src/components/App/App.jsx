@@ -24,6 +24,7 @@ import ProductPage from '../Product/ProductPage.jsx';
 import ProfilePage from '../ProfilePage/ProfilePage.jsx';
 import EditPostPage from '../UserPage/EditPost.jsx';
 import EditProductPage from '../Product/EditProduct.jsx';
+import EditProfilePage from '../ProfilePage/EditProfile.jsx'
 
 import './App.css';
 
@@ -133,6 +134,10 @@ function App() {
 
           <Route exact path="/profile">
             <ProfilePage />
+          </Route>
+
+          <Route exact path="/profile/:id/edit-profile">
+            <EditProfilePage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

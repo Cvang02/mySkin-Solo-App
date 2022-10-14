@@ -1,9 +1,12 @@
 import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
+
+// IMPORT PROFILE SAGA
 import userSaga from './user.saga';
 import addProfileImageSaga from './ProfileImage.saga/addProfileImage.saga.js';
 import getProfileImageSaga from './ProfileImage.saga/getProfileImage.saga.js';
+import updateProfileSaga from './Profile.saga/EditProfile.saga.js'
 
 // IMPORT POST SAGA
 import addPostSaga from './Post.saga/AddPost.saga.js';
@@ -43,5 +46,6 @@ export default function* rootSaga() {
     deleteProductSaga(),
     editProductSaga(),
     updateProductSaga(),
+    updateProfileSaga(),
   ]);
 }
