@@ -9,6 +9,8 @@ import GetPost from './GetPost';
 // IMPORT MATERIAL UI
 import IconButton from '@mui/material/IconButton';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { Box } from '@mui/material';
+import { Stack } from '@mui/system';
 
 function UserPage() {
   
@@ -18,15 +20,22 @@ function UserPage() {
    const history = useHistory();
 
   return (
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <IconButton aria-label="settings" onClick={() => history.push(`/add-post`)}>
-          <AddAPhotoIcon />
-      </IconButton>
-      <GetPost />
+    <Box>
+      <Stack
+        direction="column"
+        justifyContent="space-evenly"
+        alignItems="center"
+        spacing={2}
+      >
+        <h2>Welcome, {user.username}!</h2>
+        <p>Your ID is: {user.id}</p>
+        <IconButton aria-label="settings" onClick={() => history.push(`/add-post`)}>
+            <AddAPhotoIcon />
+        </IconButton>
+        <GetPost />
+      </Stack>
       {/* <LogOutButton className="btn" /> */}
-    </div>
+    </Box>
   );
 }
 
