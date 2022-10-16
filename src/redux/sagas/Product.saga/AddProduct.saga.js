@@ -2,7 +2,7 @@ import axios from "axios";
 import { put, takeEvery } from 'redux-saga/effects';
 
 function* addProduct (action) {
-    console.log('what is our action.paylod:', action.payload);
+    // console.log('what is our action.paylod:', action.payload);
 
     try {
 
@@ -19,7 +19,8 @@ function* addProduct (action) {
     } catch {
         console.log ('GET ERROR IN AddProduct.js')
     }
-}
+
+} // END OF addProduct
 
 function* addProductSaga(){
     yield takeEvery('SAGA_ADD_PRODUCT', addProduct)

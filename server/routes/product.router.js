@@ -29,7 +29,8 @@ router.post('/', async (req, res) => {
     const uploadResponse = await cloudinary.uploader.upload(fileStr, {
         upload_preset: 'product_feed',
     });
-    console.log(uploadResponse);
+    
+    // console.log(uploadResponse);
 
     const queryText = `
       INSERT INTO "product" 
