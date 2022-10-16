@@ -1,7 +1,15 @@
+// IMPORT REACT
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
+
+// IMPORT MATERIAL UI
+import { Button, Card, CardContent, CardHeader, CardMedia, Paper, TextField} from '@mui/material';
+import { Stack } from '@mui/system';
+
+// IMPORT SWEETALERT2
+import Swal from 'sweetalert2'
 
 function EditPostPage () {
 
@@ -13,7 +21,7 @@ function EditPostPage () {
     const history = useHistory();
     // USE - SELECTOR
     const postToEdit = useSelector(store => store.postToEdit)
-    console.log('what is postToEdit:', postToEdit);
+    // console.log('what is postToEdit:', postToEdit);
 
     // USE - EFFECT 
     useEffect(() => {
@@ -30,6 +38,10 @@ function EditPostPage () {
           type: 'SAGA_UPDATE_POST',
           payload: postToEdit
         })
+        Swal.fire({
+          icon: 'success',
+          title: 'Update Success!',
+        })
         history.push('/')
       }
 
@@ -39,21 +51,45 @@ function EditPostPage () {
         history.push('/')
       }
 
-
     return (
         <>
-        <h2>Edit Post: {params.id}</h2>
-        <form>
-          <input 
-                type="text"
-                value={postToEdit.description || ''}
-                onChange={(e) => dispatch({type: 'EDIT_DESCRIPTION', payload: e.target.value})}
-          />
-          <button onClick={handleConfirm}>Confirm Changes</button>
-          <button onClick={handleCancel}>Cancel</button>
-        </form>
+          <form>
+            <Stack             
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              spacing={1}>
+            <Card sx={{ maxWidth: 345 }}>
+              <Paper variant="outlined" square>
+              <CardHeader title={params.id}/>
+                <CardMedia
+                  component="img"
+                  height="max"
+                  src={postToEdit.image_url}
+                  alt="Post_Item"
+                />
+                <CardContent>
+                  <TextField 
+                    id="outlined-multiline-static"
+                    label="Description"
+                    multiline
+                    rows={4}
+                    type="text"
+                    value={postToEdit.description || ''}
+                    onChange={(e) => dispatch({type: 'EDIT_DESCRIPTION', payload: e.target.value})}
+                    fullWidth
+                  />
+                </CardContent>
+              </Paper>
+            </Card>
+            <Button variant="contained" onClick={handleConfirm}>Confirm</Button>
+            <Button variant="contained" onClick={handleCancel}>Back</Button>
+            </Stack>
+          </form>
       </>
-    )
-}
+
+    ) // END OF return
+
+} // END OF EditPostPage
 
 export default EditPostPage;
