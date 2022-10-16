@@ -1,6 +1,9 @@
+// IMPORT REACT
 import { useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 
+// IMPORT COMPONENTS
+import './Product.css';
 import ProductItem from './GetProductItem.jsx';
 
 function GetProductList () {
@@ -21,26 +24,14 @@ function GetProductList () {
     },[]);
 
     return (
-        <div>
-          <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product Image</th>
-                        <th>Brand Name</th>
-                        <th>Description</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {productList.map(item => (
-                        <ProductItem key={item.id} item={item} />
-                    ))}
-                </tbody>
-            </table>
-        </div>
-        </div>
-    )
-}
+        <ul className='product-ul'>
+            {productList.map(item => (
+                <ProductItem key={item.id} item={item} />
+            ))}
+        </ul>
+        
+    ) // END OF return
+
+} // END OF GetProductList
 
 export default GetProductList;

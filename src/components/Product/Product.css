@@ -1,14 +1,9 @@
-/* .productImage {
-    height: 150px;
-    width: 150px;
-} */
-
-/* table, td, th {
-    border: 1px solid;
-    text-align: center;
+.product-ul {
+    margin: 30px;
+    padding: 30px;
 }
 
-table {
-width: 100%;
-border-collapse: collapse;
-} */
+.product-ls {
+    padding: 20px;
+    text-align: center;
+}
