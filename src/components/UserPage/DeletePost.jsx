@@ -1,7 +1,10 @@
+// IMPORT REACT
 import { useDispatch } from 'react-redux';
 
+// IMPORT MATERIAL UI
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+import { Tooltip } from '@mui/material';
 
 function deletePost ({image}) {
 
@@ -15,7 +18,7 @@ function deletePost ({image}) {
             type: 'SAGA_DELETE_ITEM',
             payload: image.id
         })
-    } // END OF deleteImage
+    }
 
     return (
         <div>
@@ -23,10 +26,13 @@ function deletePost ({image}) {
                 aria-label="share" 
                 onClick={deletePostImage}
             >
-                <DeleteIcon />
+                <Tooltip title="Delete">
+                    <DeleteIcon />
+                </Tooltip>
             </IconButton>
         </div>
-    )
-}
+    ) // END OF return
+
+} // END OF deletePost
 
 export default deletePost;

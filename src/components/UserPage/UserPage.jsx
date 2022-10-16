@@ -1,21 +1,24 @@
+// IMPORT REACT
 import React from 'react';
-// import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // IMPORT COMPONENT
 import GetPost from './GetPost';
+import './Post.css';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 
 // IMPORT MATERIAL UI
 import IconButton from '@mui/material/IconButton';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { Box } from '@mui/material';
+import { Box, Tooltip } from '@mui/material';
 import { Stack } from '@mui/system';
 
 function UserPage() {
   
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+
    // USE-HISTORY
    const history = useHistory();
 
@@ -27,17 +30,20 @@ function UserPage() {
         alignItems="center"
         spacing={2}
       >
-        <h2>Welcome, {user.username}!</h2>
-        <p>Your ID is: {user.id}</p>
+        <h2>Hello, {user.first_name}!</h2>
         <IconButton aria-label="settings" onClick={() => history.push(`/add-post`)}>
+          <Tooltip title="Add Post">
             <AddAPhotoIcon />
+          </Tooltip>
         </IconButton>
         <GetPost />
       </Stack>
       {/* <LogOutButton className="btn" /> */}
     </Box>
-  );
-}
+
+  ); // END OF return
+
+} // END OF UserPage
 
 // this allows us to use <App /> in index.js
 export default UserPage;

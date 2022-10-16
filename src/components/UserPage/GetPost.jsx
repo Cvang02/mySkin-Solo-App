@@ -1,5 +1,8 @@
+// IMPORT REACT
 import { useEffect } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
+
+// IMPORT COMPONENT
 import ImageItem from './GetPostItem.jsx';
 
 function GetPost () {
@@ -21,12 +24,13 @@ function GetPost () {
     },[]);
 
     return(
-        <ul>
+        <ul className='post-ul'>
             {postImages.map(image => (
                 <ImageItem key={image.id} image={image}/>
             ))}
         </ul>
-    )
+    ) // END OF return
+
 } // END OF GetPost
 
 export default GetPost;
