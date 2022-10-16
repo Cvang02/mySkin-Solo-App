@@ -92,7 +92,7 @@ router.get('/:id', (req, res) => {
 // PUT - ROUTE 
 router.put('/:id', (req, res) => {
   // console.log('are we making it here');
-  console.log('What is our req.body:', req.body)
+  // console.log('What is our req.body:', req.body)
 
   const idToUpdate = req.body.id;
   const descriptionUpdate = req.body.description;
@@ -105,13 +105,12 @@ router.put('/:id', (req, res) => {
 const sqlValues = [descriptionUpdate, idToUpdate]
 
   pool.query(sqlText, sqlValues)
-      .then((result) => {
-          console.log('sucess:', result)
-          res.sendStatus(200);
+      .then(result => {
+        res.sendStatus(200);
       })
-      .catch((error) => {
-          console.log(`Error making database query ${sqlText}`, error);
-          res.sendStatus(500);
+      .catch(error => {
+        console.log(`Error making database query ${sqlText}`, error);
+        res.sendStatus(500);
       });
 });
 
