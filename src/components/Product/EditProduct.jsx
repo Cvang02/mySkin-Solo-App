@@ -1,64 +1,107 @@
+// IMPORT REACT
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 
+// IMPORT COMPONENTS
+import './Product.css';
+
+// IMPORT MATERIAL UI
+import { Button, Card, CardContent, CardHeader, CardMedia, Paper, TextField} from '@mui/material';
+import { Stack } from '@mui/system';
+
+// IMPORT SWEETALERT2
+import Swal from 'sweetalert2'
+
 function EditProductPage () {
 
-    // USE - PARAMS
-    const params = useParams();
-    // USE - DISPATCH
-    const dispatch = useDispatch();
-    // USE - HISTORY 
-    const history = useHistory();
-    // USE - SELECTOR
-    const productToEdit = useSelector(store => store.productToEdit)
-    console.log('what is productToEdit:', productToEdit);
+  // USE - PARAMS
+  const params = useParams();
+  // USE - DISPATCH
+  const dispatch = useDispatch();
+  // USE - HISTORY 
+  const history = useHistory();
+  // USE - SELECTOR
+  const productToEdit = useSelector(store => store.productToEdit)
+  // console.log('what is productToEdit:', productToEdit);
 
-    // USE - EFFECT 
-    useEffect(() => {
-        dispatch({
-          type: 'SAGA_FETCH_PRODUCT_TO_EDIT',
-          payload: params.id
-        })
-    }, [params.id])
+  // USE - EFFECT 
+  useEffect(() => {
+      dispatch({
+        type: 'SAGA_FETCH_PRODUCT_TO_EDIT',
+        payload: params.id
+      })
+  }, [params.id])
 
-    // HANDLE THE CONFIRM CHANGE BUTTON
-    const handleConfirm = (e) => {
-        e.preventDefault();
-        dispatch({
-          type: 'SAGA_UPDATE_PRODUCT',
-          payload: productToEdit
-        })
-        history.push('/product')
-      }
+  // HANDLE THE CONFIRM CHANGE BUTTON
+  const handleConfirm = (e) => {
+      e.preventDefault();
+      if (!productToEdit.brand_name) return;
+      dispatch({
+        type: 'SAGA_UPDATE_PRODUCT',
+        payload: productToEdit
+      })
+      Swal.fire({
+        icon: 'success',
+        title: 'Update Success!',
+      })
+      history.push('/product')
+  }
 
-    // HANDLE THE CANCEL BUTTON
-    const handleCancel = (e) => {
-        e.preventDefault();
-        history.push('/product')
-      }
+  // HANDLE THE CANCEL BUTTON
+  const handleCancel = (e) => {
+      e.preventDefault();
+      history.push('/product')
+  }
 
 
-    return (
-        <>
-        <h2>Edit Post: {params.id}</h2>
-        <form>
-            <input 
+  return (
+    <form>
+      <Stack             
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={1}
+      >
+        <Card sx={{ maxWidth: 345 }}>
+          <Paper variant="outlined" square>
+            <CardHeader title={params.id}/>
+            <CardMedia
+              component="img"
+              height="max"
+              src={productToEdit.product_url}
+              alt="Post_Item"
+            />
+            <CardContent>
+              <TextField 
+                id="outlined-multiline-static"
+                label="Brand Name"
                 type="text"
                 value={productToEdit.brand_name || ''}
                 onChange={(e) => dispatch({type: 'EDIT_PRODUCT_BRAND_NAME', payload: e.target.value})}
-            />
-            <input 
+                fullWidth
+                required
+              />
+              <TextField 
+                id="outlined-multiline-static"
+                label="Description"
+                multiline
+                rows={4}
                 type="text"
                 value={productToEdit.description || ''}
                 onChange={(e) => dispatch({type: 'EDIT_PRODUCT_DESCRIPTION', payload: e.target.value})}
-            />
-          <button onClick={handleConfirm}>Confirm Changes</button>
-          <button onClick={handleCancel}>Cancel</button>
-        </form>
-      </>
-    )
-}
+                fullWidth
+              />
+            </CardContent>
+          </Paper>
+        </Card>
+      <Button variant="contained" onClick={handleConfirm}>Confirm</Button>
+      <Button variant="contained" onClick={handleCancel}>Back</Button>
+      </Stack>
+    </form>
+  ) // END OF return
+
+} // END OF EditProductPage
 
 export default EditProductPage;

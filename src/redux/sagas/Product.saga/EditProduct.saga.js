@@ -1,26 +1,27 @@
 import axios from "axios";
 import { put, takeEvery } from 'redux-saga/effects';
 
-function* editProduct(action) {
-    try {
-      const productId = action.payload;
-      // console.log('what is postID:', postId);
-      const res = yield axios({
-        method: 'GET',
-        url: `/api/productRouter/${productId}`
-      })
-      yield put({
-        type: 'SET_PRODUCT_TO_EDIT',
-        payload: {
-          id: res.data.id,
-          brand_name: res.data.brand_name,
-          description: res.data.description
-        }
-      })
-    } catch (err) {
-      console.log(err)
-    }
+function* editProduct (action) {
+  try {
+    const productId = action.payload;
+    // console.log('what is postID:', postId);
+    const res = yield axios({
+      method: 'GET',
+      url: `/api/productRouter/${productId}`
+    })
+    yield put({
+      type: 'SET_PRODUCT_TO_EDIT',
+      payload: {
+        id: res.data.id,
+        product_url: res.data.product_url,
+        brand_name: res.data.brand_name,
+        description: res.data.description
+      }
+    })
+  } catch (err) {
+    console.log(err)
   }
+} // END OF editProduct
 
 function* editProductSaga(){
     yield takeEvery('SAGA_FETCH_PRODUCT_TO_EDIT', editProduct)
