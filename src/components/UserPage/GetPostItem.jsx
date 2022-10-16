@@ -1,3 +1,4 @@
+// IMPORT REACT
 import { useState } from 'react';
 import DeletePost from './DeletePost.jsx';
 import { useHistory } from 'react-router-dom';
@@ -15,10 +16,12 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
+import { Paper, Tooltip } from '@mui/material';
 
 
 function ImageItem({image}){
 
+    // USE - HISTORY
     const history = useHistory();
 
     const ExpandMore = styled((props) => {
@@ -38,12 +41,11 @@ function ImageItem({image}){
     setExpanded(!expanded);
     };
 
-    return(
-        <div>
+    return (
+        <div className='post-ls'>
             <Card sx={{ maxWidth: 345 }}>
-                <CardHeader
-                    title={image.id}
-                />
+                <Paper variant="outlined" square>
+                <CardHeader title={image.id}/>
                 <CardMedia
                     component="img"
                     height="max"
@@ -65,29 +67,33 @@ function ImageItem({image}){
                         aria-expanded={expanded}
                         aria-label="show more"
                     >
-                        <ExpandMoreIcon />
+                        <Tooltip title="settings">
+                            <ExpandMoreIcon />
+                        </Tooltip>
                     </ExpandMore>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                    <DeletePost image={image}/>
-                    <IconButton aria-label="settings" onClick={() => history.push(`/post/${image.id}/editpost`)}>
-                        <EditIcon />
-                    </IconButton>
-                </CardActions>
-                    {/* <Typography paragraph>Skincare Product:</Typography>
-                    <Typography paragraph>
-                        This section will show the users skincare product that which they are using.
-                    </Typography> */}
-                </CardContent>
+                    <CardContent>
+                        <CardActions disableSpacing>
+                            <DeletePost image={image}/>
+                            <IconButton aria-label="settings" onClick={() => history.push(`/post/${image.id}/editpost`)}>
+                                <Tooltip title="Edit">
+                                    <EditIcon />
+                                </Tooltip>
+                            </IconButton>
+                        </CardActions>
+                        {/* <Typography paragraph>Skincare Product:</Typography>
+                        <Typography paragraph>
+                            This section will show the users skincare product that which they are using.
+                        </Typography> */}
+                    </CardContent>
                 </Collapse>
+                </Paper>
             </Card>
         </div>
-    )
+
+    ) // END OF return
+
 } // END OF ImageItem.
 
 export default ImageItem;
