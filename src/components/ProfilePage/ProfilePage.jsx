@@ -1,11 +1,11 @@
+// IMPORT REACT
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-
 
 // MATERIAL UI
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-import { Box } from '@mui/material';
+import { Box, Tooltip, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 
 function ProfilePage () {
@@ -25,19 +25,22 @@ function ProfilePage () {
                 alignItems="center"
                 spacing={2}
             >
-                <h1>Profile</h1>
-                <p>Username: {user.username}</p>
-                <p>Email: {user.email}</p>
-                <p>First Name: {user.first_name}</p>
-                <p>Last Name: {user.last_name}</p>
-                <p>Edit Profile: 
+                <Typography variant='h4'>
+                    Profile 
                     <IconButton aria-label="settings" onClick={() => history.push(`/profile/${user.id}/edit-profile`)}>
-                        <EditIcon />
+                        <Tooltip title="Edit">
+                            <EditIcon />
+                        </Tooltip>
                     </IconButton>
-                </p>
+                </Typography>
+                <Typography variant='h6'>Username: {user.username}</Typography>
+                <Typography variant='h6'>Email: {user.email}</Typography>
+                <Typography variant='h6'>First Name: {user.first_name}</Typography>
+                <Typography variant='h6'>Last Name: {user.last_name}</Typography>
             </Stack>
         </Box>
-    )
+    ) // END OF return
+
 } // END OF ProfilePage
 
 export default ProfilePage;
