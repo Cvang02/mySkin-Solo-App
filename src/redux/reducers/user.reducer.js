@@ -4,6 +4,8 @@ const userReducer = (state = {}, action) => {
       return action.payload;
     case 'UNSET_USER':
       return {};
+    case 'EDIT_PROFILE_URL':
+      return {...state, profile_url: action.payload}
     case 'EDIT_PROFILE_USERNAME':
       return {...state, username: action.payload}
     case 'EDIT_PROFILE_EMAIL':

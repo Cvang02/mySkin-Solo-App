@@ -5,7 +5,7 @@ import { useHistory } from 'react-router'
 // MATERIAL UI
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-import { Box, Tooltip, Typography } from '@mui/material';
+import { Avatar, Box, Tooltip, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 
 function ProfilePage () {
@@ -33,6 +33,10 @@ function ProfilePage () {
                         </Tooltip>
                     </IconButton>
                 </Typography>
+                <Avatar
+                    src={user.profile_url}
+                    sx={{ width: 250, height: 250 }}
+                />
                 <Typography variant='h6'>Username: {user.username}</Typography>
                 <Typography variant='h6'>Email: {user.email}</Typography>
                 <Typography variant='h6'>First Name: {user.first_name}</Typography>

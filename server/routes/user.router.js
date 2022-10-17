@@ -36,8 +36,8 @@ router.post('/register', async (req, res, next) => {
   const queryText = `INSERT INTO "user" ("username", "password", "email", "first_name", "last_name", "profile_url")
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
 
-  pool
-    .query(queryText, [username, password, email, firstName, lastName, profileImage])
+  pool.query(queryText, [username, password, email, firstName, lastName, profileImage])
+
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);
@@ -69,14 +69,15 @@ router.put('/:id', (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const firstName = req.body.first_name;
-  const LastName = req.body.last_name;
+  const lastName = req.body.last_name;
+  const profile_url = req.body.profile_url;
 
   const sqlText = `
     UPDATE "user" 
-    SET ("username", "email", "first_name", "last_name") = ($1, $2, $3, $4)
-    WHERE "id" = $5`;
+    SET ("username", "email", "first_name", "last_name", "profile_url") = ($1, $2, $3, $4, $5)
+    WHERE "id" = $6`;
 
-const sqlValues = [username, email, firstName, LastName, id]
+const sqlValues = [username, email, firstName, lastName, profile_url, id]
 
   pool.query(sqlText, sqlValues)
       .then((result) => {
