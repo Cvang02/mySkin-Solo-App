@@ -2,10 +2,9 @@ import axios from "axios";
 import { put, takeEvery } from 'redux-saga/effects';
 
 
-function* deletePostItem(action){
+function* deletePostItem (action) {
     const itemId = action.payload
     // console.log(itemId);
-
     try {
         yield axios({
             method: 'DELETE',
@@ -15,11 +14,11 @@ function* deletePostItem(action){
             type: 'SAGA_GET_POST_LIST'
         })
     } catch {
-        console.log('DELETE ERROR');
+        console.log('ERROR IN DeletePost.saga.js');
     }
-}
+} // END OF deletePostItem
 
-function* deletePostItemSaga(){
+function* deletePostItemSaga() {
     yield takeEvery('SAGA_DELETE_ITEM', deletePostItem)
 }
 
