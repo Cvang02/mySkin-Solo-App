@@ -1,3 +1,4 @@
+// IMPORT REACT
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -5,10 +6,9 @@ import { useHistory } from 'react-router-dom';
 
 // MATERIAL UI 
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Container, Stack } from '@mui/system';
-import { Card, Typography } from '@mui/material';
+import { Stack } from '@mui/system';
+import { Card, CardContent, Paper, Typography } from '@mui/material';
 
 
 function AddPost () {
@@ -66,38 +66,42 @@ function AddPost () {
         })
     } 
 
-return (
-    <Box
-        component="form" sx={{'& .MuiTextField-root': { m: 1, width: '25ch' },}}
-        noValidate
-        autoComplete="off"
-    >
-        <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            spacing={1}
-        >                    
+    return (
+        <form>
+            <Stack             
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+                spacing={1}
+            >
             <Typography variant='h3'>Post Your Photo!</Typography>
             <Card sx={{ maxWidth: 345 }}>
-                <Container direction="center">
-
+                <Paper variant="outlined" square>
+                    <CardContent>
                     {previewSource && (<img src={previewSource} alt="chosen" />)}
-                <input type="file" onChange={handleFileInputChange} name="image" />
-            <TextField
-                id="outlined-multiline-static"
-                label="Description"
-                multiline
-                rows={4}
-                onChange={(e) => setDescription(e.target.value)}
-            />
-                </Container>
+                    <TextField 
+                        type="file" 
+                        onChange={handleFileInputChange} 
+                        name="image"
+                        fullWidth
+                        required
+                    />
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        onChange={(e) => setDescription(e.target.value)}
+                        fullWidth
+                    />
+                    </CardContent>
+                </Paper>
             </Card>
             <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
-            <Button variant="contained" onClick={handleCancel}>Cancel</Button>
-        </Stack>
-    </Box>
-)
+            <Button variant="contained" onClick={handleCancel}>Back</Button>
+            </Stack>
+        </form>
+    ) // END OF return
 } // END OF AddPost
 
 export default AddPost;
