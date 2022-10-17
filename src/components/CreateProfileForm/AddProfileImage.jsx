@@ -43,11 +43,6 @@ function AddProfileImage () {
             payload: {profile_url:base64EncodedImage},
             headers:{'Content-type': 'application/json'}
           });
-        // dispatch({
-        //     type: 'SAGA_PROFILE_IMAGE',
-        //     payload:{profile_url:base64EncodedImage},
-        //     headers:{'Content-type': 'application/json'}
-        // })
     } 
 
     return (

@@ -20,7 +20,6 @@ function CreateProfileForm() {
     const errors = useSelector((store) => store.errors);
     const userInfo = useSelector(store => store.userInfoReducer);
     const profileInfo = useSelector(store => store.profileImageReducer);
-    console.log('what is:', profileInfo);
     
     // USE-DISPATCH
     const dispatch = useDispatch();

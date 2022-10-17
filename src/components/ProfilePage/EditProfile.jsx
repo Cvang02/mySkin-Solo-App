@@ -1,16 +1,16 @@
 // IMPORT REACT
-import { useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 
 // IMPORT MATERIAL UI
 import { Stack } from '@mui/system';
-import { Button, TextField } from '@mui/material';
+import { Avatar, Button, TextField } from '@mui/material';
+
+// IMPORT SWEETALERT2
+import Swal from 'sweetalert2'
 
 function EditProfilePage () {
 
-  // USE - PARAMS
-  const params = useParams();
   // USE - DISPATCH
   const dispatch = useDispatch();
   // USE - HISTORY 
@@ -21,9 +21,14 @@ function EditProfilePage () {
   // HANDLE THE CONFIRM CHANGE BUTTON
   const handleConfirm = (e) => {
       e.preventDefault();
+      if (!user.username || !user.email|| !user.first_name|| !user.last_name) return;
       dispatch({
         type: 'SAGA_UPDATE_PROFILE',
         payload: user
+      })
+      Swal.fire({
+        icon: 'success',
+        title: 'Update Success!',
       })
       history.push('/profile')
   }
@@ -44,6 +49,18 @@ function EditProfilePage () {
           alignItems="center"
           spacing={1}
         >
+          <Avatar
+            src={user.profile_url}
+            sx={{ width: 250, height: 250 }}
+          />
+          <TextField 
+            id="outlined-multiline-static"
+            label="Image URL"
+            type="text"
+            value={user.profile_url || ''}
+            onChange={(e) => dispatch({type: 'EDIT_PROFILE_URL', payload: e.target.value})}
+            fullWidth
+          />
           <TextField 
             id="outlined-multiline-static"
             label="Username"
