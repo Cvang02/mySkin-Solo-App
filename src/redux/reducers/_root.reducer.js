@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import userInfoReducer from './userInfo.reducer';
-import profileImageReducer from './addProfileImage.reducer.js';
+import profileImageReducer from './ProfileImage.reducer.js';
 
 // IMPORT POST REDUCERS 
 import postFeedReducer from './PostReducers/postfeed.reducer.js';

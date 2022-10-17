@@ -1,13 +1,15 @@
+// IMPORT REACT
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // IMPORT MATERIAL UI
-import { Hidden } from '@mui/material';
+import { Button, Hidden, TextField, Typography } from '@mui/material';
+import { Stack } from '@mui/system';
 
 function RegisterForm() {
 
-  // THESE ARE OUR LOCAL STATE
+  // USE - STATE
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -34,54 +36,57 @@ function RegisterForm() {
   }; // END OF registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
-      {errors.registrationMessage && (
+    <>
+<form onSubmit={registerUser}>
+  <Stack             
+    direction="column"
+    justifyContent="center"
+    alignItems="center"
+    spacing={1}
+  >
+    <Typography>Register User</Typography>
+    {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
+    <TextField 
+      id="username"
+      label="Username"
+      type="text"
+      name="username"
+      value={username}
+      required
+      onChange={(event) => setUsername(event.target.value)}
+      fullWidth
+    />
+    <TextField 
+      id="password"
+      label="Password"
+      type="password"
+      name="password"
+      value={password}
+      required
+      onChange={(event) => setPassword(event.target.value)}
+      fullWidth
+    />
+    <TextField 
+      id="email"
+      label="Email"
+      type="text"
+      name="email"
+      value={email}
+      required
+      onChange={(event) => setEmail(event.target.value)}
+      fullWidth
+    />
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
+        {!username && !password && !email ? Hidden(<Button variant="contained" type="submit" name="submit" value="Register">Register</Button>) :
+        <Button variant="contained" type="submit" name="submit" value="Register">Register</Button>}
       </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="email">
-          Email:
-          <input
-            type="text"
-            name="email"
-            value={email}
-            required
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        {!username && !password && !email ? Hidden(<input className="btn" type="submit" name="submit" value="Register" />) :
-        <input className="btn" type="submit" name="submit" value="Register" />}
-      </div>
-    </form>
+  </Stack>
+</form>
+</>
   );
 } // END OF RegisterForm
 

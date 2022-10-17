@@ -8,7 +8,6 @@ import Stack from '@mui/material/Stack';
 function AddProfileImage () {
 
     // LOCAL STATE
-    const [fileInputState, setFileInputState] = useState ('');
     const [previewSource, setPreviewSource] = useState ('');
 
     // HANDLE THE FILE CHANGE INPUT 
@@ -40,10 +39,15 @@ function AddProfileImage () {
     // FILE INTO A STRING TO SEND IT AS OUT DATA TO SAGA. 
     const  uploadImage = (base64EncodedImage) => {
         dispatch({
-            type: 'SAGA_PROFILE_IMAGE',
-            payload:{profile_url:base64EncodedImage},
+            type: 'REDUCER_USER_PROFILE',
+            payload: {profile_url:base64EncodedImage},
             headers:{'Content-type': 'application/json'}
-        })
+          });
+        // dispatch({
+        //     type: 'SAGA_PROFILE_IMAGE',
+        //     payload:{profile_url:base64EncodedImage},
+        //     headers:{'Content-type': 'application/json'}
+        // })
     } 
 
     return (
