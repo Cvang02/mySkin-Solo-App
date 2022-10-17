@@ -4,8 +4,6 @@ import registrationSaga from './registration.saga';
 
 // IMPORT PROFILE SAGA
 import userSaga from './user.saga';
-import addProfileImageSaga from './ProfileImage.saga/addProfileImage.saga.js';
-import getProfileImageSaga from './ProfileImage.saga/getProfileImage.saga.js';
 import updateProfileSaga from './Profile.saga/EditProfile.saga.js'
 
 // IMPORT POST SAGA
@@ -34,8 +32,6 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    addProfileImageSaga(),
-    getProfileImageSaga(),
     addPostSaga(),
     getPostItemsSaga(),
     deletePostItemSaga(),

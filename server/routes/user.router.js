@@ -5,6 +5,7 @@ const {
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
+const cloudinary = require('../modules/cloudinary');
 
 const router = express.Router();
 
@@ -17,13 +18,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-router.post('/register', (req, res, next) => {
+router.post('/register', async (req, res, next) => {
+  // console.log('what is req.body', req.body);
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
   const email = req.body.email;
   const firstName = req.body.first_name;
   const lastName = req.body.last_name;
-  const profileImage = req.body.profile_url;
+
+  const fileStr = req.body.profile_url;
+  const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+      upload_preset: 'Profile_image_url',
+  });
+
+  const profileImage = uploadResponse.url
 
   const queryText = `INSERT INTO "user" ("username", "password", "email", "first_name", "last_name", "profile_url")
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;

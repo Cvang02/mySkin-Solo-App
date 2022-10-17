@@ -1,8 +1,14 @@
+// IMPORT REACT
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+// IMPORT COMPONENT
 import AddProfileImage from './AddProfileImage.jsx';
+
+// IMPORT MATERIAL UI
+import { Button, TextField, Typography } from '@mui/material';
+import { Stack } from '@mui/system';
 
 function CreateProfileForm() {
 
@@ -14,6 +20,7 @@ function CreateProfileForm() {
     const errors = useSelector((store) => store.errors);
     const userInfo = useSelector(store => store.userInfoReducer);
     const profileInfo = useSelector(store => store.profileImageReducer);
+    console.log('what is:', profileInfo);
     
     // USE-DISPATCH
     const dispatch = useDispatch();
@@ -44,43 +51,44 @@ function CreateProfileForm() {
   }
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Create User Profile</h2>
-      {errors.registrationMessage && (
+    <form onSubmit={registerUser}>
+  <Stack             
+    direction="column"
+    justifyContent="center"
+    alignItems="center"
+    spacing={1}
+  >
+    <Typography>Create User Profile</Typography>
+    {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
-      <AddProfileImage />
-      <div>
-        <label htmlFor="firstName">
-          First Name:
-          <input
-            type="text"
-            name="firstName"
-            value={firstName}
-            required
-            onChange={(event) => setFirstName(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="lastName">
-          Last Name:
-          <input
-            type="text"
-            name="lastName"
-            value={lastName}
-            required
-            onChange={(event) => setLastName(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" onClick={BackPage} value="back" />
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
-    </form>
+    <AddProfileImage />
+    <TextField 
+      id="firstname"
+      label="First Name"
+      type="text"
+      name="firstName"
+      value={firstName}
+      required
+      onChange={(event) => setFirstName(event.target.value)}
+      fullWidth
+    />
+    <TextField 
+      id="lastname"
+      label="Last Name"
+      type="text"
+      name="lastName"
+      value={lastName}
+      required
+      onChange={(event) => setLastName(event.target.value)}
+      fullWidth
+    />
+    <Button variant="contained" type="submit" name="submit" onClick={BackPage} value="back">Back</Button>
+    <Button variant="contained" type="submit" name="submit" value="Register">Register</Button>
+  </Stack>
+</form>
   );
 } // END OF CreateProfileForm
 
