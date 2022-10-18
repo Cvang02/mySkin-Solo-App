@@ -85,20 +85,29 @@ function AddPost () {
                         name="image"
                         fullWidth
                         required
+                        margin="normal"
                     />
                     <TextField
-                        id="outlined-multiline-static"
+                        id="post-description"
                         label="Description"
                         multiline
                         rows={4}
                         onChange={(e) => setDescription(e.target.value)}
                         fullWidth
+                        margin="normal"
                     />
                     </CardContent>
                 </Paper>
             </Card>
-            <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
-            <Button variant="contained" onClick={handleCancel}>Back</Button>
+                <Stack
+                direction="row"
+                justifyContent="flex-start"
+                alignItems="center"
+                spacing={2}
+                >
+                    <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
+                    <Button variant="contained" onClick={handleCancel}>Back</Button>
+                </Stack>
             </Stack>
         </form>
     ) // END OF return
