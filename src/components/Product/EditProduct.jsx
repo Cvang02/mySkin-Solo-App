@@ -75,16 +75,17 @@ function EditProductPage () {
             />
             <CardContent>
               <TextField 
-                id="outlined-multiline-static"
+                id="brand-name"
                 label="Brand Name"
                 type="text"
                 value={productToEdit.brand_name || ''}
                 onChange={(e) => dispatch({type: 'EDIT_PRODUCT_BRAND_NAME', payload: e.target.value})}
                 fullWidth
                 required
+                margin="normal"
               />
               <TextField 
-                id="outlined-multiline-static"
+                id="product-description"
                 label="Description"
                 multiline
                 rows={4}
@@ -92,12 +93,20 @@ function EditProductPage () {
                 value={productToEdit.description || ''}
                 onChange={(e) => dispatch({type: 'EDIT_PRODUCT_DESCRIPTION', payload: e.target.value})}
                 fullWidth
+                margin="normal"
               />
             </CardContent>
           </Paper>
         </Card>
-      <Button variant="contained" onClick={handleConfirm}>Confirm</Button>
-      <Button variant="contained" onClick={handleCancel}>Back</Button>
+          <Stack
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="center"
+            spacing={2}
+          >
+            <Button variant="contained" onClick={handleConfirm}>Confirm</Button>
+            <Button variant="contained" onClick={handleCancel}>Back</Button>
+          </Stack>
       </Stack>
     </form>
   ) // END OF return

@@ -76,7 +76,7 @@ function AddProduct () {
                 alignItems="center"
                 spacing={1}
             >
-            <Typography variant='h3'>Add Your Skincare Product!</Typography>
+            <Typography variant='h4'>Add Your Skincare Product!</Typography>
                 <Card sx={{ maxWidth: 345 }}>
                     <Paper variant="outlined" square>
                         <CardContent>
@@ -87,28 +87,38 @@ function AddProduct () {
                             name="image"
                             fullWidth
                             required
+                            margin="normal"
                         />
                         <TextField
-                            id="outlined-basic" 
+                            id="brand-name" 
                             label="Brand Name" 
                             variant="outlined"
                             onChange={(e) => setBrandName(e.target.value)}
                             fullWidth
                             required
+                            margin="normal"
                         />
                         <TextField
-                            id="outlined-multiline-static"
+                            id="product-description"
                             label="Description"
                             multiline
                             rows={4}
                             onChange={(e) => setDescription(e.target.value)}
                             fullWidth
+                            margin="normal"
                         />
                         </CardContent>
                     </Paper>
                 </Card>
-            <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
-            <Button variant="contained" onClick={handleCancel}>Back</Button>
+                <Stack
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                    spacing={2}
+                >
+                    <Button variant="contained" onClick={handelSubmitFile}>Add</Button>
+                    <Button variant="contained" onClick={handleCancel}>Back</Button>
+                </Stack>
             </Stack>
         </form>
     ) // END OF return

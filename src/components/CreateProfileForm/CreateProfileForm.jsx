@@ -57,7 +57,7 @@ function CreateProfileForm() {
     alignItems="center"
     spacing={1}
   >
-    <Typography>Create User Profile</Typography>
+    <Typography variant='h4'>Create User Profile</Typography>
     {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -84,8 +84,15 @@ function CreateProfileForm() {
       onChange={(event) => setLastName(event.target.value)}
       fullWidth
     />
-    <Button variant="contained" type="submit" name="submit" onClick={BackPage} value="back">Back</Button>
-    <Button variant="contained" type="submit" name="submit" value="Register">Register</Button>
+    <Stack
+      direction="row"
+      justifyContent="flex-start"
+      alignItems="center"
+      spacing={2}
+    >
+      <Button variant="contained" type="submit" name="submit" onClick={BackPage} value="back">Back</Button>
+      <Button variant="contained" type="submit" name="submit" value="Register">Register</Button>
+    </Stack>
   </Stack>
 </form>
   );

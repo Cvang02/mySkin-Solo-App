@@ -97,8 +97,15 @@ function EditProfilePage () {
             fullWidth
             required
           />
-          <Button variant="contained" onClick={handleConfirm}>Confirm</Button>
-          <Button variant="contained" onClick={handleCancel}>Back</Button>
+            <Stack
+              direction="row"
+              justifyContent="flex-start"
+              alignItems="center"
+              spacing={2}
+            >
+              <Button variant="contained" onClick={handleConfirm}>Confirm</Button>
+              <Button variant="contained" onClick={handleCancel}>Back</Button>
+            </Stack>
         </Stack>
       </form>
     </>

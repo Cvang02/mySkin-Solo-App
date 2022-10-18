@@ -4,6 +4,7 @@ import React from 'react';
 
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import { Button, TextField } from '@mui/material';
 
 function AddProfileImage () {
 
@@ -53,10 +54,20 @@ function AddProfileImage () {
                 sx={{ width: 250, height: 250 }}
                 />
             </Stack>
-            <div>
-                <input type="file" onChange={handleFileInputChange} name="image" />
-                <button onClick={handelSubmitFile} variant="contained" type="submit">Add picture</button>
-            </div>
+            <Stack
+              direction="row"
+              justifyContent="flex-start"
+              alignItems="center"
+              spacing={2}
+            >
+            <TextField 
+                type="file" 
+                onChange={handleFileInputChange} 
+                name="image"
+                required
+            />
+            <Button variant="contained" onClick={handleFileInputChange}>Add Picture</Button>
+            </Stack>
         </>
     )
 }
