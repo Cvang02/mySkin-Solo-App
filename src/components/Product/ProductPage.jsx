@@ -9,7 +9,7 @@ import './Product.css';
 // IMPORT MATERIAL UI
 import IconButton from '@mui/material/IconButton';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { Box, Tooltip } from '@mui/material';
+import { Box, Tooltip, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 
 function ProductPage () {
@@ -30,7 +30,10 @@ function ProductPage () {
               <IconButton aria-label="settings" onClick={() => history.push(`/add-product`)}>
                 <AddAPhotoIcon />
               </IconButton>
-            </Tooltip>
+            </Tooltip>              
+              <Typography>
+                Start Adding to your list. 
+              </Typography>
             <GetProductList />
           </Stack>
       </Box>

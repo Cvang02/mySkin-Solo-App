@@ -11,7 +11,7 @@ import './Post.css';
 // IMPORT MATERIAL UI
 import IconButton from '@mui/material/IconButton';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { Box, Tooltip } from '@mui/material';
+import { Box, Tooltip, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 
 function UserPage() {
@@ -36,6 +36,7 @@ function UserPage() {
             <AddAPhotoIcon />
           </Tooltip>
         </IconButton>
+        <Typography>Start Your Journey.</Typography>
         <GetPost />
       </Stack>
       {/* <LogOutButton className="btn" /> */}

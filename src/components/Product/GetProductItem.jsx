@@ -45,7 +45,7 @@ function GetProductItem ({item}) {
 
   return (
     <div className='product-ls'>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 300 , minWidth:300 }}>
         <Paper
         variant="outlined" square
         >
