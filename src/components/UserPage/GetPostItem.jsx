@@ -13,7 +13,6 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import { Paper, Tooltip } from '@mui/material';
@@ -28,17 +27,17 @@ function ImageItem({image}){
     const { expand, ...other } = props;
     return <IconButton {...other} />;
     })(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
+        transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
     }),
     }));
 
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
-    setExpanded(!expanded);
+        setExpanded(!expanded);
     };
 
     return (
@@ -85,7 +84,8 @@ function ImageItem({image}){
                         {/* <Typography paragraph>Skincare Product:</Typography>
                         <Typography paragraph>
                             This section will show the users skincare product that which they are using.
-                        </Typography> */}
+                        </Typography> */} 
+                        {/* this is for future goals */}
                     </CardContent>
                 </Collapse>
                 </Paper>

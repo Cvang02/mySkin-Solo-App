@@ -10,6 +10,9 @@ import TextField from '@mui/material/TextField';
 import { Stack } from '@mui/system';
 import { Card, CardContent, Paper, Typography } from '@mui/material';
 
+// IMPORT SWEETALERT2
+import Swal from 'sweetalert2'
+
 
 function AddPost () {
 
@@ -41,10 +44,11 @@ function AddPost () {
         e.preventDefault();
         if(!previewSource) return;
         uploadPost(previewSource);
-        // THIS HARD REFRESH PAGE. WILL NEED TO FIX THIS FOR
-        // FUTURE USE. NEED TO ADD ALERT TO NOTIFY USER THAT THIER 
-        // POST IS SUCCESSFUL. 
-        window.location.reload();
+        Swal.fire({
+            icon: 'success',
+            title: 'Post Added Success!',
+          })
+        history.push('/user')
     }
     
     const handleCancel = (e) => {
