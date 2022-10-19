@@ -20,8 +20,6 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     // console.log('what is our req.body data:', req.body);
     // console.log('userID is:', id);
-
-  try {
     const id = req.user.id
     const brandName = req.body.brand_name;
     const description = req.body.description;
@@ -29,7 +27,6 @@ router.post('/', async (req, res) => {
     const uploadResponse = await cloudinary.uploader.upload(fileStr, {
         upload_preset: 'product_feed',
     });
-    
     // console.log(uploadResponse);
 
     const queryText = `
@@ -46,10 +43,15 @@ router.post('/', async (req, res) => {
 
     pool.query(queryText, queryValues)
 
-} catch (err) {
-    console.error(err);
-    res.status(500).json({ err: 'Something went wrong' });
- }
+    .then( result => {
+      // console.log(result)
+      res.send(result);
+    })
+    .catch(err => {
+      console.log('ERROR:', err);
+      res.sendStatus(500)
+    })
+
 });
 
 // DELETE - ROUTE 

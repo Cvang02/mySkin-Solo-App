@@ -6,7 +6,6 @@ const cloudinary = require('../modules/cloudinary');
 // POST - ROUTE
 router.post('/', async (req, res) => {
 
-    try {
       const id = req.user.id
       const description = req.body.description;
       console.log('userID is:', id);
@@ -26,11 +25,16 @@ router.post('/', async (req, res) => {
       ]
       
       pool.query(queryText, queryValues)
-  
-  } catch (err) {
-      console.error(err);
-      res.status(500).json({ err: 'Something went wrong' });
-   }
+
+      .then( result => {
+        // console.log(result)
+        res.send(result);
+      })
+      .catch(err => {
+        console.log('ERROR:', err);
+        res.sendStatus(500)
+      })
+
 });
 
 // GET - ROUTE 

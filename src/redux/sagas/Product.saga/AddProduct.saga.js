@@ -13,7 +13,8 @@ function* addProduct (action) {
         });
         
         yield put({
-            type: 'SAGA_GET_PRODUCT_LIST'
+            type: 'SAGA_GET_PRODUCT_LIST',
+            data: action.payload
         })
         
     } catch {

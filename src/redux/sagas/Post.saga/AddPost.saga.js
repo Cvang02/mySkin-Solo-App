@@ -12,7 +12,8 @@ function* addPost (action) {
         });
         
         yield put({
-            type: 'SAGA_GET_POST_LIST'
+            type: 'SAGA_GET_POST_LIST',
+            data: action.payload
         })
         
     } catch {
