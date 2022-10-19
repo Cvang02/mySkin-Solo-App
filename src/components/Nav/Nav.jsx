@@ -1,48 +1,107 @@
+// IMPORT REACT
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 
 // IMPORT MATERIAL UI
-import { AppBar, Avatar, IconButton, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Avatar } from '@mui/material';
 import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import HomeIcon from '@mui/icons-material/Home';
+import SpaIcon from '@mui/icons-material/Spa';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import InfoIcon from '@mui/icons-material/Info';
+import ArticleIcon from '@mui/icons-material/Article';
+import LogoutIcon from '@mui/icons-material/Logout';
 
+const drawerWidth = 240;
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+    transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.easeOut,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+    marginLeft: 0,
+  }),
+  }),
+);
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+    })(({ theme, open }) => ({
+      transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+      ...(open && {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: `${drawerWidth}px`,
+      transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
 
 const StyledToolBar = styled(Toolbar) ({
   display:"flex",
   justifyContent:"space-between"
 })
 
-function Nav () {
+function Nav() {
 
-  // USE - SELECTOR
-  const user = useSelector((store) => store.user);
+  // USE-SELECTOR
+  const user = useSelector(store =>store.user);
 
-  // USE - STATE
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const theme = useTheme();
+  const [open, setOpen] = useState(false);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
 
-return (
-  <AppBar position="sticky">
-    <StyledToolBar>
-      {/* If no user is logged in, show these links */}
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  return (
+  <Box sx={{ display: 'flex' }}>
+    <CssBaseline />
+      <AppBar position="sticky" open={open}>
+        <StyledToolBar>
+          {/* If no user is logged in, show these links */}
       {!user.id && (
       // If there's no user, show login/registration links
         <>
@@ -57,177 +116,129 @@ return (
       {/* If a user is logged in, show these links */}
       {user.id && (
         <>
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <Typography
-                variant="h6"
-                noWrap
-                sx={{
-                  mr: 2,
-                  display: { xs: 'none', md: 'flex' },
-                  fontFamily: 'monospace',
-                  fontWeight: 700,
-                  letterSpacing: '.3rem',
-                  color: 'inherit',
-                  textDecoration: 'none',
-                }}
-                >
-                  $(mySkin)
-              </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' },
-                }}
-              >
-                <MenuItem>
-                  <Link to="/user">
-                    Home
-                  </Link>
-                </MenuItem>  
-                <MenuItem>
-                  <Link to="/product">
-                    Product
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/profile">
-                    Profile
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/info">
-                    Info Page
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/about">
-                    About
-                  </Link>
-                </MenuItem>
-              </Menu>
-            </Box>
-            <Typography
-              variant="h5"
-              noWrap
-              sx={{
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+          <Typography 
+            variant="h6" 
+            noWrap 
+            component="div"
+            sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
-              }}
-            >
-              $(mySkin)
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Tooltip title="Home Page">
-                <Link to="/user">
-                  <Button variant="contained" >
-                    <Typography>
-                      Home
-                    </Typography>
-                  </Button>
-                </Link>
-              </Tooltip>
-              <Tooltip title="Product Page">
-                <Link to="/product">
-                  <Button variant="contained" >
-                    <Typography>
-                      Product
-                    </Typography>
-                  </Button>
-                </Link>
-              </Tooltip>
-              <Tooltip title="Profile Page">
-                <Link to="/profile">
-                  <Button variant="contained" >
-                    <Typography>
-                      Profile
-                    </Typography>
-                  </Button>
-                </Link>
-              </Tooltip>
-              <Tooltip title="Info Page">
-              <Link to="/info">
-                  <Button variant="contained" >
-                    <Typography>
-                      Info Page
-                    </Typography>
-                  </Button>
-                </Link>
-              </Tooltip>
-              <Tooltip title="About Page">
-                <Link to="/about">
-                  <Button variant="contained" >
-                    <Typography>
-                      About
-                    </Typography>
-                  </Button>
-                </Link>
-              </Tooltip>
-            </Box>
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar src={user.profile_url}/>
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-              <MenuItem>
-                <LogOutButton />
-              </MenuItem>
-              </Menu>
-            </Box>
-            </Toolbar>
-          </Container>
-        </>
-      )}
-      </StyledToolBar>
-    </AppBar>
-    );
-} // END OF Nav
+            }}
+          >
+            $(mySkin)
+          </Typography>
+          </Toolbar>
+          </> )}
+        </StyledToolBar>
+      </AppBar>
+    <Drawer
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+        width: drawerWidth,
+        boxSizing: 'border-box',
+      },
+      }}
+      variant="persistent"
+      anchor="left"
+      open={open}
+    >
+      <DrawerHeader>
+        <IconButton onClick={handleDrawerClose}>
+          {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        </IconButton>
+      </DrawerHeader>
+      <Divider />
+        <Avatar
+          src={user.profile_url}
+          sx={{ width: 240, height: 240 }}
+        />
+      <Divider />
+        <List>
+          <Link to="/user">
+            <ListItem>
+              <ListItemButton>
+              <IconButton>
+                <HomeIcon />
+              </IconButton>
+                Home
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        <Link to="/product">
+          <ListItem>
+            <ListItemButton>
+              <IconButton>
+                <SpaIcon />
+              </IconButton>
+                Skincare Product
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link to="/profile">
+          <ListItem>
+            <ListItemButton>
+              <IconButton>
+                <AccountCircleIcon />
+              </IconButton>
+                Profile
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link to="/info">
+          <ListItem>
+            <ListItemButton>
+              <IconButton>
+                <InfoIcon />
+              </IconButton>
+                Information
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link to="/about">
+          <ListItem>
+            <ListItemButton>
+              <IconButton>
+                <ArticleIcon />
+              </IconButton>
+                About
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        <Link to="/home">
+          <ListItem>
+            <ListItemButton>
+              <IconButton>
+                <LogoutIcon />
+              </IconButton>
+              <LogOutButton />
+                Logout
+            </ListItemButton>
+          </ListItem>
+        </Link>
+        </List>
+    </Drawer>
+      <Main open={open}>
+      <DrawerHeader />
+    </Main>
+  </Box>
+  ); // END OF return
+} // END OF nav
 
 export default Nav;
 
