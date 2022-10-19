@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // IMPORT MATERIAL UI
-import { Avatar, Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Avatar, Box, Button, Grid, TextField, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 function Copyright(props) {
@@ -51,7 +51,7 @@ function RegisterForm() {
   }; // END OF registerUser
 
   return (
-    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={20} square>
+    <Grid item xs={12} sm={8} md={5} elevation={20} square>
       <Box
           sx={{
             my: 8,
