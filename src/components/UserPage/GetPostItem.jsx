@@ -3,6 +3,9 @@ import { useState } from 'react';
 import DeletePost from './DeletePost.jsx';
 import { useHistory } from 'react-router-dom';
 
+// IMPORT LUXON
+import { DateTime } from 'luxon';
+
 // MATERIAL UI 
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -40,23 +43,29 @@ function ImageItem({image}){
         setExpanded(!expanded);
     };
 
+    const formatTime = (datetimeString) => {
+        const dt = DateTime.fromISO(datetimeString)
+        return dt.toLocaleString(DateTime.DATETIME_FULL)
+    }
+
     return (
         <div className='post-ls'>
             <Card sx={{ maxWidth: 345 }}>
                 <Paper variant="outlined" square>
-                <CardHeader title={image.id}/>
+                    <CardHeader></CardHeader>
+                {/* <CardHeader title={image.id}/> */}
                 <CardMedia
                     component="img"
                     height="max"
                     src={image.image_url}
                     alt="Post_Feed"
                 />
-                <CardContent>
+                <CardContent>                    
+                    <Typography variant="body2" color="text.secondary">
+                        Date Posted: {formatTime(image.inserted_at)}
+                    </Typography>
                     <Typography variant="body2" color="text.primary">
                         {image.description}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Date Posted: {image.inserted_at}
                     </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
