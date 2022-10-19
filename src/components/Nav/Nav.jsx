@@ -127,7 +127,7 @@ function Nav() {
               <MenuIcon />
             </IconButton>
           <Typography 
-            variant="h6" 
+            variant="h3" 
             noWrap 
             component="div"
             sx={{
@@ -142,7 +142,12 @@ function Nav() {
             $(mySkin)
           </Typography>
           </Toolbar>
-          </> )}
+            <IconButton>
+              <LogoutIcon />
+              <LogOutButton />
+            </IconButton>
+          </> 
+          )}
         </StyledToolBar>
       </AppBar>
     <Drawer
@@ -210,27 +215,16 @@ function Nav() {
             </ListItemButton>
           </ListItem>
         </Link>
-        <Link to="/about">
-          <ListItem>
-            <ListItemButton>
-              <IconButton>
-                <ArticleIcon />
-              </IconButton>
-                About
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link to="/home">
-          <ListItem>
-            <ListItemButton>
-              <IconButton>
-                <LogoutIcon />
-              </IconButton>
-              <LogOutButton />
-                Logout
-            </ListItemButton>
-          </ListItem>
-        </Link>
+          <Link to="/about">
+            <ListItem>
+              <ListItemButton>
+                <IconButton>
+                  <ArticleIcon />
+                </IconButton>
+                  About
+              </ListItemButton>
+            </ListItem>
+          </Link>
         </List>
     </Drawer>
       <Main open={open}>
