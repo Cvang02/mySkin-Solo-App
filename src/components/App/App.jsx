@@ -104,8 +104,18 @@ function App() {
             }
           </Route>
 
-          <Route exact path="/createProfile">
-            <CreateProfileForm />
+          <Route
+            exact
+            path="/createProfile"
+          >
+            {user.id ?
+              // If the user is already logged in, 
+              // redirect them to the /user page
+              <Redirect to="/user" />
+              :
+              // Otherwise, show the registration page
+              <CreateProfileForm />
+            }
           </Route>
 
           <Route
@@ -122,33 +132,33 @@ function App() {
             }
           </Route>
 
-          <Route exact path="/add-post">
+          <ProtectedRoute exact path="/add-post">
             <AddPost />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/product">
+          <ProtectedRoute exact path="/product">
             <ProductPage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/add-product">
+          <ProtectedRoute exact path="/add-product">
             <AddProduct />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/post/:id/editpost">
+          <ProtectedRoute exact path="/post/:id/editpost">
             <EditPostPage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/post/:id/editproduct">
+          <ProtectedRoute exact path="/post/:id/editproduct">
             <EditProductPage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/profile">
+          <ProtectedRoute exact path="/profile">
             <ProfilePage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/profile/:id/edit-profile">
+          <ProtectedRoute exact path="/profile/:id/edit-profile">
             <EditProfilePage />
-          </Route>
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
