@@ -66,7 +66,7 @@ function AddProfileImage () {
                 name="image"
                 required
             />
-            <Button variant="contained" onClick={handleFileInputChange}>Add Picture</Button>
+            <Button variant="contained" onClick={handelSubmitFile}>Add Picture</Button>
             </Stack>
         </>
     )
