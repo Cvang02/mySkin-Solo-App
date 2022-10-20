@@ -2,9 +2,12 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const cloudinary = require('../modules/cloudinary');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // POST - ROUTE
-router.post('/', async (req, res) => {
+router.post('/', rejectUnauthenticated, async (req, res) => {
 
       const id = req.user.id
       const description = req.body.description;
@@ -38,10 +41,12 @@ router.post('/', async (req, res) => {
 });
 
 // GET - ROUTE 
-router.get('/', (req, res) => {
-  const query = `SELECT * FROM "post" ORDER BY "id" DESC;`;
-  pool.query(query)
+router.get('/', rejectUnauthenticated, (req, res) => {
+  const query = `SELECT * FROM "post" WHERE "user_id" = $1 ORDER BY "id" DESC;`;
+  const sqlValues = [req.user.id]
+  pool.query(query, sqlValues)
     .then( result => {
+      // console.log(result.rows);
       res.send(result.rows);
     })
     .catch(err => {
@@ -51,7 +56,7 @@ router.get('/', (req, res) => {
 });
 
 // DELETE - ROUTE 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
   console.log(`Deleting Item with ID ${req.params.id}`);
     
@@ -74,7 +79,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // GET - ROUTE FOR EDIT POST 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `
     SELECT * FROM "post"
@@ -94,7 +99,7 @@ router.get('/:id', (req, res) => {
 });
 
 // PUT - ROUTE 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
   // console.log('are we making it here');
   // console.log('What is our req.body:', req.body)
 
