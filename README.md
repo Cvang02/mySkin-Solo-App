@@ -1,15 +1,8 @@
+# Project Title : $(mySkin) - (bling - my - skin)
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+(Bling) $(mySkin) app lets you keep track of your skin care process through the means of taking and uploading pictures of your face profile. This will let you see a series of photo timeline of your skin condition and if the skincare products you are currently using are working or not. You also have the option to add any skincare product that you are currently using, have used in the past or are looking to use in the future into a list of products in its own section page. This is to help you keep track of your skincare product to let you determine if the product is worth keeping or scraping it.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
-
-## Use the Template for This Repository (Don't Clone)
-
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
-
-
-## Prerequisites
+# Prerequisites :
 
 Before you get started, make sure you have the following software installed on your computer:
 
@@ -17,19 +10,14 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
+# Getting Started :
 
-Create a new database called `prime_app` and create a `user` table:
-
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
-
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+- Fork and Clone Repositories.
+- Create Database in Postico(postgreSQL) and name database as solo_project_data. (Database name can be change in server/modules/pool.js)
+  The queries in the database.sql file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on Postgres, so you will need to make sure to have that installed. I recommend using Postico to run those queries as that was used to create the queries.
+- Open up your editor of choice and run an npm install. (npm install) (A full list of dependencies can be found in `package.json`)
+- Run, npm run server and npm run client in your terminal. Both server and client must be running at the same time. NPM run client will       
+  automatically open a new web browser tab for you. If no new browser were open, go to your localhost:3000 or localhost:5000.
 
 ## Development Setup Instructions
 

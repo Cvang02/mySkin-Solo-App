@@ -44,7 +44,7 @@ function LoginForm() {
   }; // end login
 
   return (
-<Grid item xs={12} sm={8} md={5} elevation={20} square>
+<Grid item xs={12} sm={8} md={5} elevation={20}>
       <Box
           sx={{
             my: 8,
