@@ -18,92 +18,59 @@ Before you get started, make sure you have the following software installed on y
 - Open up your editor of choice and run an npm install. (npm install) (A full list of dependencies can be found in `package.json`)
 - Run, npm run server and npm run client in your terminal. Both server and client must be running at the same time. NPM run client will       
   automatically open a new web browser tab for you. If no new browser were open, go to your localhost:3000 or localhost:5000.
-
-## Development Setup Instructions
-
-- Run `npm install`
 - Create a `.env` file at the root of the project and paste this line into the file:
   ```
   SERVER_SESSION_SECRET=superDuperSecret
   ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
 
-## Debugging
+- Cloudinary was used for this project. Cloudinary is a free api uploading services that lets you upload your photo on your computer and into their cloud service. Please go and create a free acount. (https://cloudinary.com). Once you create your account, in the same .env file, paste these line into the file: 
+ ```
+CLOUDINARY_NAME = (Your own Cloudinary name)
+CLOUDINARY_API_KEY = (Your own Cloudinary API Key)
+CLOUDINARY_API_SECRET = (Your own Cloudinary API Secret)
+  ```
+You can find your cloudinary information on the website and copy and paste them according to each line. Please keep your cloudinary API key to yourself, do not share it to anyone. In Cloudinary, you'll have to setup your upload presets according to your liking in the settings page. The name of your upload presents is very important as it has to match with your routes. (These are the name files that I have setup for this project, (profile_image_url), (post_feed), (product_feed), these names can be change. Please look at each server/routes page to change the name)
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+# Running the App :
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+Once you have everything setup and running. Follow these instruction on how to use the app. 
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+- In the Home page, you will have to register an account. If you already have an account, please login instead. 
+- To register an account, all required information must be entered, a username, password and email, first name, last name and profile image. (When adding profile image, please hit "add photo" first before clicking register). This will not work if you do not add profile image first.
+- When your account has been created, you will be taken to the home page. In the home page, you have the option to start adding a new post or you can use the navigation bar to navigate to other pages. 
+- In the home page, to upload a photo, click on the camera icon and it should take you to another page where you can choose your photo file and add a description. Hit 'add post" and it will take you back to the home page and you should see your photo there. (If photo does not show up instantly, please give it a few second or refesh page.) Each post you have the option to delete or edit it by clicking on the down arrow. 
+- To go and look at your skincare product list, use navigation bar on the top left. Similar to adding a post, the product page will have the same functionality. Click on camera icon and fill in the required product information to add it to your list. You have the option to delete and edit each skincare product added. 
+- In the profile page, it will show you your inforamtion of username, email, first name, and last name. You will have the option to change these information by clicking on the edit icon next to the "Profile" heading. Please note that password change has not yet been incorporated into this project at this time, so please keep you password safe where you can remember it. 
+- Inforamtion page is intended to have the same information as the README.md.
+- About page is a description of what the app is. 
+- To logout, click on the logout icon on the top right corner.  
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+Thank you and please enjoy this app. 
 
-## Testing Routes with Postman
+# Build With :
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+- This app was built with: 
+  - Axios
+  - Bcryptjs
+  - Dotenv
+  - Luxon
+  - Material UI
+  - Passport
+  - PG
+  - React
+  - Redux - Saga
+  - Sweetalert2
+  
+Please read `package.json` for the full list of dependencies.
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+# Acknowledgement 
 
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
+- Thanks to Prime Digital Academy who equipped and helped me to make this application a reality. 
+- Thanks to everyone in the L'engle cohort who supported and help me with this project.
+- Thanks to my family and friends with daily support. 
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+# Support 
 
-## Production Build
+If you have any suggestions or issues, please email me at chameng.vang@outlook.com
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
