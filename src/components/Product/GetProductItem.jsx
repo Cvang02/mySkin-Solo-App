@@ -21,6 +21,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Paper, Tooltip } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+// IMPORT LUXON
+import { DateTime } from 'luxon';
+
 function GetProductItem ({item}) {
 
   // USE - HISTORY
@@ -43,6 +46,11 @@ function GetProductItem ({item}) {
     setExpanded(!expanded);
   };
 
+  const formatTime = (datetimeString) => {
+    const dt = DateTime.fromISO(datetimeString)
+    return dt.toLocaleString(DateTime.DATETIME_FULL)
+  }
+
   return (
     <div className='product-ls'>
       <Card sx={{ maxWidth: 300 , minWidth:300 }}>
@@ -59,7 +67,17 @@ function GetProductItem ({item}) {
               alt="Post_Feed"
           />
           <CardContent>
-              <Typography variant="body2" color="text.primary">
+              <Typography 
+                variant="body2" 
+                color="text.primary"
+                sx={{
+                  mr: 2,
+                  fontFamily: 'monospace',
+                  fontWeight: 500,
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
                   {item.description}
               </Typography>
           </CardContent>
@@ -77,6 +95,18 @@ function GetProductItem ({item}) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
+            <Typography 
+              variant="body2" 
+              sx={{
+                mr: 2,
+                fontFamily: 'monospace',
+                fontWeight: 500,
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+                Date Posted: {formatTime(item.inserted_at)}
+            </Typography>
               <CardActions disableSpacing>
                   <DeleteProduct item={item}/>
                   <IconButton aria-label="settings" onClick={() => history.push(`/post/${item.id}/editproduct`)}>

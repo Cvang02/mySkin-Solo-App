@@ -165,7 +165,17 @@ function Nav() {
               <IconButton>
                 <HomeIcon />
               </IconButton>
-                Home
+                <Typography
+                  sx={{
+                    mr: 2,
+                    fontFamily: 'monospace',
+                    fontWeight: 500,
+                    color: 'inherit',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Home
+                </Typography>
               </ListItemButton>
             </ListItem>
           </Link>
@@ -175,7 +185,17 @@ function Nav() {
               <IconButton>
                 <SpaIcon />
               </IconButton>
-                Skincare Product
+                <Typography
+                  sx={{
+                    mr: 2,
+                    fontFamily: 'monospace',
+                    fontWeight: 500,
+                    color: 'inherit',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Skincare Product
+                </Typography>
             </ListItemButton>
           </ListItem>
         </Link>
@@ -185,7 +205,17 @@ function Nav() {
               <IconButton>
                 <AccountCircleIcon />
               </IconButton>
-                Profile
+                <Typography
+                  sx={{
+                    mr: 2,
+                    fontFamily: 'monospace',
+                    fontWeight: 500,
+                    color: 'inherit',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Profile
+                </Typography>
             </ListItemButton>
           </ListItem>
         </Link>
@@ -195,7 +225,17 @@ function Nav() {
               <IconButton>
                 <InfoIcon />
               </IconButton>
-                Information
+                <Typography
+                  sx={{
+                    mr: 2,
+                    fontFamily: 'monospace',
+                    fontWeight: 500,
+                    color: 'inherit',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Information
+                </Typography>
             </ListItemButton>
           </ListItem>
         </Link>
@@ -205,7 +245,17 @@ function Nav() {
                 <IconButton>
                   <ArticleIcon />
                 </IconButton>
-                  About
+                  <Typography
+                    sx={{
+                      mr: 2,
+                      fontFamily: 'monospace',
+                      fontWeight: 500,
+                      color: 'inherit',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    About
+                  </Typography>
               </ListItemButton>
             </ListItem>
           </Link>

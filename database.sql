@@ -13,7 +13,7 @@ CREATE TABLE "user" (
     "email" VARCHAR (100) NOT NULL,
     "first_name" VARCHAR (100) NOT NULL,
     "last_name" VARCHAR (100) NOT NULL,
-    "profile_url" VARCHAR,
+    "profile_url" VARCHAR NULL,
  	"inserted_at" TIMESTAMP NOT NULL DEFAULT NOW(),
 	"updated_at" TIMESTAMP NOT NULL DEFAULT NOW()
 );
@@ -21,8 +21,7 @@ CREATE TABLE "user" (
 CREATE TABLE "post" (
     "id" SERIAL PRIMARY KEY,
     "image_url" VARCHAR NOT NULL,
-    "description" VARCHAR (100) NOT NULL,
-    "product_id" INT REFERENCES "post",
+    "description" VARCHAR,
     "user_id" INT REFERENCES "user",
     "inserted_at" TIMESTAMP NOT NULL DEFAULT NOW(),
 	"updated_at" TIMESTAMP NOT NULL DEFAULT NOW()
@@ -31,8 +30,8 @@ CREATE TABLE "post" (
 CREATE TABLE "product" (
     "id" SERIAL PRIMARY KEY,
     "product_url" VARCHAR NOT NULL,
-    "brand_name" VARCHAR (100),
-    "description" VARCHAR NOT NULL,
+    "brand_name" VARCHAR (100) NOT NULL,
+    "description" VARCHAR,
     "user_id" INT REFERENCES "user",
     "inserted_at" TIMESTAMP NOT NULL DEFAULT NOW(),
 	"updated_at" TIMESTAMP NOT NULL DEFAULT NOW()

@@ -25,7 +25,7 @@ function ProfilePage () {
                 alignItems="center"
                 spacing={2}
             >
-                <Typography variant='h4'>
+                <Typography sx={{fontFamily: 'monospace'}} variant='h4'>
                     Profile 
                     <IconButton aria-label="settings" onClick={() => history.push(`/profile/${user.id}/edit-profile`)}>
                         <Tooltip title="Edit">
@@ -37,10 +37,10 @@ function ProfilePage () {
                     src={user.profile_url}
                     sx={{ width: 250, height: 250 }}
                 />
-                <Typography variant='h6'>Username: {user.username}</Typography>
-                <Typography variant='h6'>Email: {user.email}</Typography>
-                <Typography variant='h6'>First Name: {user.first_name}</Typography>
-                <Typography variant='h6'>Last Name: {user.last_name}</Typography>
+                <Typography sx={{fontFamily: 'monospace'}} variant='h6'>Username: {user.username}</Typography>
+                <Typography sx={{fontFamily: 'monospace'}} variant='h6'>Email: {user.email}</Typography>
+                <Typography sx={{fontFamily: 'monospace'}} variant='h6'>First Name: {user.first_name}</Typography>
+                <Typography sx={{fontFamily: 'monospace'}} variant='h6'>Last Name: {user.last_name}</Typography>
             </Stack>
         </Box>
     ) // END OF return

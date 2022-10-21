@@ -61,10 +61,17 @@ function ImageItem({image}){
                     alt="Post_Feed"
                 />
                 <CardContent>                    
-                    <Typography variant="body2" color="text.secondary">
-                        Date Posted: {formatTime(image.inserted_at)}
-                    </Typography>
-                    <Typography variant="body2" color="text.primary">
+                    <Typography 
+                        variant="body2" 
+                        color="text.primary"
+                        sx={{
+                            mr: 2,
+                            fontFamily: 'monospace',
+                            fontWeight: 500,
+                            color: 'inherit',
+                            textDecoration: 'none',
+                        }}
+                    >
                         {image.description}
                     </Typography>
                 </CardContent>
@@ -82,6 +89,18 @@ function ImageItem({image}){
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
+                        <Typography 
+                            variant="body2" 
+                            sx={{
+                                mr: 2,
+                                fontFamily: 'monospace',
+                                fontWeight: 500,
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            Date Posted: {formatTime(image.inserted_at)}
+                        </Typography>
                         <CardActions disableSpacing>
                             <DeletePost image={image}/>
                             <IconButton aria-label="settings" onClick={() => history.push(`/post/${image.id}/editpost`)}>
