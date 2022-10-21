@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // IMPORT COMPONENT 
 import './Nav.css';
@@ -68,6 +69,8 @@ function Nav() {
 
   // USE-SELECTOR
   const user = useSelector(store =>store.user);
+  // USE-HISTORY
+  const history = useHistory();
 
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -80,6 +83,15 @@ function Nav() {
     setOpen(false);
   };
 
+  const goToHomePage = (e) => {
+    e.preventDefault();
+    history.push('/home')
+  }
+  const goToAboutPage = (e) => {
+    e.preventDefault();
+    history.push('/about')
+  }
+
   return (
   <Box sx={{ display: 'flex' }}>
     <CssBaseline />
@@ -89,12 +101,36 @@ function Nav() {
       {!user.id && (
       // If there's no user, show login/registration links
         <>
-          <Link to="/login">
-            Login / Register
-          </Link>
-          <Link to="/about">
+          <Typography 
+            variant="h3" 
+            noWrap 
+            component="div"
+            sx={{
+              mr: 2,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+            onClick={goToHomePage}
+          >
+            $(mySkin)
+          </Typography>
+          <IconButton onClick={goToAboutPage}>
+            <ArticleIcon />
+            <Typography
+              sx={{
+                mr: 2,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
             About
-          </Link>
+            </Typography>
+          </IconButton>
         </>
       )}
       {/* If a user is logged in, show these links */}
@@ -266,56 +302,3 @@ function Nav() {
 } // END OF nav
 
 export default Nav;
-
-
-// import './Nav.css';
-
-// function Nav() {
-//   const user = useSelector((store) => store.user);
-
-//   return (
-//     <div className="nav">
-//       <Link to="/home">
-//         <h2 className="nav-title">Chameng GOING SOLO!!!</h2>
-//       </Link>
-//       <div>
-//         {/* If no user is logged in, show these links */}
-//         {!user.id && (
-//           // If there's no user, show login/registration links
-//           <Link className="navLink" to="/login">
-//             Login / Register
-//           </Link>
-//         )}
-
-//         {/* If a user is logged in, show these links */}
-//         {user.id && (
-//           <>
-//             <Link className="navLink" to="/user">
-//               Home
-//             </Link>
-
-//             <Link className="navLink" to="/product">
-//               Product
-//             </Link>
-
-//             <Link className="navLink" to="/profile">
-//               Profile
-//             </Link>
-
-//             <Link className="navLink" to="/info">
-//               Info Page
-//             </Link>
-
-//             <LogOutButton className="navLink" />
-//           </>
-//         )}
-
-//         <Link className="navLink" to="/about">
-//           About
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Nav;
