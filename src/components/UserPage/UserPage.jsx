@@ -30,13 +30,32 @@ function UserPage() {
         alignItems="center"
         spacing={2}
       >
-        <h2>Hello, {user.first_name}!</h2>
+        <Typography
+        variant='h5'
+          sx={{
+            mr: 2,
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            color: 'inherit',
+            textDecoration: 'none',
+          }}
+        >
+          Hello, {user.first_name}!
+        </Typography>
         <IconButton aria-label="settings" onClick={() => history.push(`/add-post`)}>
           <Tooltip title="Add Post">
             <AddAPhotoIcon />
           </Tooltip>
         </IconButton>
-        <Typography>Start Your Journey.</Typography>
+        <Typography
+          sx={{
+            mr: 2,
+            fontFamily: 'monospace',
+            fontWeight: 700,
+            color: 'inherit',
+            textDecoration: 'none',
+          }}
+        >Start Your Journey.</Typography>
         <GetPost />
       </Stack>
       {/* <LogOutButton className="btn" /> */}

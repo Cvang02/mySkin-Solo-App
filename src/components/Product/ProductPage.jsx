@@ -25,13 +25,32 @@ function ProductPage () {
             alignItems="center"
             spacing={2}
           >
-            <h2>Your Skincare Product</h2>
+            <Typography
+            variant='h5'
+              sx={{
+                mr: 2,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              Your Skincare Product
+            </Typography>
             <Tooltip title="Add Product">
               <IconButton aria-label="settings" onClick={() => history.push(`/add-product`)}>
                 <AddAPhotoIcon />
               </IconButton>
             </Tooltip>              
-              <Typography>
+              <Typography
+                sx={{
+                  mr: 2,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
                 Start Adding to your list. 
               </Typography>
             <GetProductList />
