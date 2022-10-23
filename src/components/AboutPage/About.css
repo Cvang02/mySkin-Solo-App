@@ -1,5 +1,10 @@
 .About {
     text-align: center;
-    padding: 70px;
-    margin: 80px;
+    padding: 50px;
+    margin: 50px;
+}
+
+.linkedin {
+    height: 650px;
+    width: 650px;
 }

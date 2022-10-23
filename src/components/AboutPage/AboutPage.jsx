@@ -21,7 +21,7 @@ function AboutPage() {
       <br></br>
       <br></br>
       <Typography 
-        variant='h5'
+        variant='h6'
         sx={{
           mr: 2,
           fontFamily: 'monospace',
@@ -38,7 +38,7 @@ function AboutPage() {
       <br></br>
       <br></br>
       <Typography 
-        variant='h5'
+        variant='h6'
         sx={{
           mr: 2,
           fontFamily: 'monospace',
@@ -66,7 +66,6 @@ function AboutPage() {
         - Uploading to Cloudinary
       </Typography>
       <br></br>
-      <br></br>
       <Typography variant='h6' sx={{fontFamily: 'monospace', fontWeight: 700}}>
         Future Expectation for this app:
       </Typography>
@@ -76,7 +75,6 @@ function AboutPage() {
       <Typography variant='subtitle1' sx={{fontFamily: 'monospace',}}>
         - Mobile Version
       </Typography>
-      <br></br>
       <br></br>
       <Typography variant='h6' sx={{fontFamily: 'monospace', fontWeight: 700}}>
         This app was built with:
@@ -97,9 +95,6 @@ function AboutPage() {
         - Luxon
       </Typography>
       <Typography variant='subtitle1' sx={{fontFamily: 'monospace',}}>
-        - Cloudinary
-      </Typography>
-      <Typography variant='subtitle1' sx={{fontFamily: 'monospace',}}>
         - Material UI
       </Typography>
       <Typography variant='subtitle1' sx={{fontFamily: 'monospace',}}>
@@ -112,7 +107,7 @@ function AboutPage() {
         - React
       </Typography>
       <Typography variant='subtitle1' sx={{fontFamily: 'monospace',}}>
-        - Redux - Saga
+        - Redux-Saga
       </Typography>
       <Typography variant='subtitle1' sx={{fontFamily: 'monospace',}}>
         - Sweetalert2
@@ -141,6 +136,12 @@ function AboutPage() {
       <Typography variant='subtitle1' sx={{fontFamily: 'monospace',}}>
         - If you have any suggestions or issues, please email me at chameng.vang@outlook.com
       </Typography>
+      <br></br>
+      <Typography variant='subtitle1' sx={{fontFamily: 'monospace',}}>
+        - Linkedin : www.linkedin.com/in/chamengvang
+      </Typography>
+      <br></br>
+      <img className='linkedin' src='https://res.cloudinary.com/dcmz1mbn5/image/upload/v1666565263/Profile_Image_url/IMG_5178870ADCB8-1_ffjhw0.jpg'/>
     </div>
   );
 }

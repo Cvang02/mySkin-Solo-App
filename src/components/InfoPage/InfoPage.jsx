@@ -26,11 +26,11 @@ function InfoPage() {
       <Typography variant='h6' sx={{fontFamily: 'monospace'}}>
       Before you get started, make sure you have the following software installed on your computer:
       <br></br>
-      <ls>[Node.js](https://nodejs.org/en/)</ls>
+      [Node.js](https://nodejs.org/en/)
       <br></br>
-      <ls>[PostrgeSQL](https://www.postgresql.org/)</ls>
+      [PostrgeSQL](https://www.postgresql.org/)
       <br></br>
-      <ls>[Nodemon](https://nodemon.io/)</ls>
+      [Nodemon](https://nodemon.io/)
       </Typography>
       <br></br>
       <Typography variant='h5' sx={{fontFamily: 'monospace', fontWeight: 700}}>
@@ -38,7 +38,7 @@ function InfoPage() {
       </Typography>
       <br></br>
       <Typography variant='h6' sx={{fontFamily: 'monospace',}}>
-      - Fork and Clone Repositories.
+      - Fork and Clone Repositories. (https://github.com/Cvang02/prime-solo-project)
       <br></br>
       - Create Database in Postico(postgreSQL) and name database as solo_project_data. 
       (Database name can be change in server/modules/pool.js) The queries in the database.sql 
