@@ -2,8 +2,9 @@
 
 (Bling) $(mySkin) app lets you keep track of your skin care process through the means of taking and uploading pictures of your face profile. This will let you see a series of photo timeline of your skin condition and if the skincare products you are currently using are working or not. You also have the option to add any skincare product that you are currently using, have used in the past or are looking to use in the future into a list of products in its own section page. This is to help you keep track of your skincare product to let you determine if the product is worth keeping or scraping it.
 
-Here are sceenchots of the application:!
-[LandingPage](https://user-images.githubusercontent.com/105823509/199758328-a7a194e9-4852-46c1-be84-ccdbffcd6486.png)
+Here are sceenchots of the application:
+
+![LandingPage](https://user-images.githubusercontent.com/105823509/199758328-a7a194e9-4852-46c1-be84-ccdbffcd6486.png)
 ![Home:PostPage](https://user-images.githubusercontent.com/105823509/199758367-3faa69d1-2053-4ca5-9fd9-c62214af3034.png)
 ![ProductPage](https://user-images.githubusercontent.com/105823509/199758458-7959db0e-5a38-43b5-9fbc-e36fae46c06b.png)
 ![AboutPage](https://user-images.githubusercontent.com/105823509/199758488-5755c6a8-df94-4f0f-9da0-4dde4a1d2f1e.png)
