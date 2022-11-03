@@ -53,7 +53,10 @@ Thank you and please enjoy this app.
 - This app was built with: 
   - Axios
   - Bcryptjs
+  - CSS
   - Dotenv
+  - HTML
+  - JavaScript
   - Luxon
   - Material UI
   - Passport
